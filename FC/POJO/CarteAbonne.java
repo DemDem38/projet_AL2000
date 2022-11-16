@@ -5,4 +5,11 @@ public class CarteAbonne {
     public CarteAbonne() {
     }
     
+    public void recharger(int montant) {
+        
+    }
+
+    public void débiter(int montant) {
+        
+    }
 }

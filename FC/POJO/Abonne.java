@@ -14,7 +14,40 @@ public class Abonne extends Client{
      public Abonne() {
         
      }
+     /*Methodes */
+     public void demanderFilm(Film film) {
+        /* Permet de domander un film qui n'est pas dans le catalogue
+         * Accès a la base de données pour vérifier que le film n'est pas présent
+         * Pré-enregistrer la location de l'utilisateur actuel sur ce film ??
+         */
+     }
 
+     public List<Location> consulterHistorique() {
+        /*Doit retourner une liste de location faites par l'utilisateur actuel
+         * this
+         * Acces a la base de données nécessaire
+         */
+        return null;
+     }
+
+     public void RetournerBluray(Film film,boolean defecteux) {
+        /*
+         * Permet a l'utilisateur de rendre une location qu'il a faite
+         * en se basant sur le film qu'il met dans la machine
+         * Accès base de donnée pour trouver la location (Via locationDAO ??)
+         */
+     }
+
+     public void CreerCompteEnfant(String nom,String prenom, List<String> restriction){
+        /*Permet de crée un compte enfant avec une liste de restrcition
+         * Si un compte abonnée a une liste de restriction non vide alors
+         * il est considérer comme un compte enfant, il ne peux donc
+         * pas crée lui même un compte enfant 
+         * TODO A VERFIER !!!
+         */
+     }
+
+     /*Getteur et Setteur */
     public String getNom() {
         return nom;
     }
