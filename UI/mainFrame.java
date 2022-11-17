@@ -16,6 +16,11 @@ public class mainFrame extends JFrame {
         returnBluRayUI returnPanel = new returnBluRayUI();
         cardsPanel.add(returnPanel, "returnPanel");
 
+        homeUI homeUI = new homeUI();
+        cardsPanel.add(homeUI, "homeUI");
+
+        CardLayout cl = (CardLayout)(cardsPanel.getLayout());
+        cl.show(cardsPanel, "homeUI");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 400);
