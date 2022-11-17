@@ -1,13 +1,13 @@
 create table abonnes(
-    abonneID number AUTO_INCREMENT,
+    abonneID number(10) GENERATED ALWAYS AS IDENTITY,
     nom varchar(50),
     prenom varchar(50),
     email varchar(50),
     adresse varchar(50),
     telephone varchar(10),
     restrictions varchar(500),
-    solde number,
-    mdpHash number,
+    solde number(10),
+    mdpHash number(10),
     constraint abonnes_C1 primary key (abonneID)
 );
 
@@ -17,36 +17,33 @@ create table films(
     realisateur varchar(50),
     synopsis varchar(1000),
     acteurs varchar(500),
-    constraint films_C1 primary key (nom)
+    constraint films_C1 primary key (nomFilm)
 );
 
 create table supports(
-    supportID number AUTO_INCREMENT,
+    supportID number(10) GENERATED ALWAYS AS IDENTITY,
     nomFilm varchar(100),
     typeSup varchar(10),
     constraint supports_C1 primary key (supportID),
-    constraint supports_C2 foreign key (nomFilm) references films(nom)
+    constraint supports_C2 foreign key (nomFilm) references films (nomFilm)
 );
 
 create table locations(
-    supportID number,
+    supportID number(10),
     dateDebut TIMESTAMP,
     dateFin TIMESTAMP,
-    abonneID number,
+    abonneID number(10),
     etat varchar(20),
-    constraint locations_C1 primary key (supportID),
-    constraint locations_C2 primary key (dateDebut),
-    constraint locations_C3 foreign key (supportID) references supports(supportID),
-    constraint locations_C4 foreign key (abonneID) references abonnes(abonneID)
+    constraint locations_C1 primary key (supportID, dateDebut),
+    constraint locations_C3 foreign key (supportID) references supports (supportID),
+    constraint locations_C4 foreign key (abonneID) references abonnes (abonneID)
 );
 
 create table demandesAjouts(
-    abonneID number,
+    abonneID number(10),
     nomFilm varchar(100),
-    constraint demandesAjouts_C1 primary key (abonneID),
-    constraint demandesAjouts_C2 primary key (nomFilm),
-    constraint demandesAjouts_C3 foreign key (abonneID) references abonnes(abonneID),
-    constraint demandesAjouts_C4 foreign key (nomFilm) references films(nomFilm)
-
-);
+    constraint demandesAjouts_C1 primary key (abonneID, nomFilm),
+    constraint demandesAjouts_C3 foreign key (abonneID) references abonnes (abonneID),
+    constraint demandesAjouts_C4 foreign key (nomFilm) references films (nomFilm)
+)
 

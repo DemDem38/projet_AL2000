@@ -1,22 +1,35 @@
 package FC;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.*;
 
 import FC.DAO.DBConnexion;
 
 public class testConnexion {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Connection connexion = DBConnexion.instance();
-        System.out.println("Bonjour");
         try {
-            ResultSet result = connexion.createStatement().
-            executeQuery("SELECT owner, TABLE_NAME FROM all_tables WHERE owner NOT IN ('SYS', 'SYSTEM', 'CTXSYS', 'MDSYS') ORDER BY owner, TABLE_NAME");
-            while (result.next()) {
-                System.out.println(result.getString("owner"));
-                System.out.println(result.getString("TABLE_NAME"));
+            Statement statement;
+            statement = connexion.createStatement();
+
+            Path path = Path.of("BDD/drop.sql");
+            String str = Files.readString(path);
+            String[] sentences = str.split(";");  
+            for (String commande : sentences) {
+                statement.execute(commande);
             }
+
+            path = Path.of("BDD/create.sql");
+            str = Files.readString(path);
+            sentences = str.split(";");
+            for (String commande : sentences) {
+                statement.execute(commande);
+            }
+            
         } catch (SQLException e) { 
-            e.printStackTrace(); 
+            e.printStackTrace();
         }
     }
 }
