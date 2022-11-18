@@ -1,19 +1,26 @@
 package FC.POJO;
-import java.util.Date;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Abonne
  */
 public class Abonne extends Client{
-    protected String nom,prenom,adresse,email,tel;
-    private String mdp; //TODO A modifier en HASH
-    protected Date dateNaissance;
-    protected List<String> restrictions;
+    protected String nom,prenom,email,adresse,tel;
+    private int mdp;
+    protected String[] restrictions;
+    protected int solde, ID;
 
-     public Abonne() {
-        
-     }
+    public Abonne(int id, String n, String p, String e, String a, String t, String[] r, int s, int mdp) {
+        ID = id;
+        nom = n;
+        prenom = p;
+        adresse = a;
+        email = e;
+        tel = t;
+        this.mdp = mdp;
+        solde = s;
+        restrictions = r;
+    }
      /*Methodes */
      public void demanderFilm(Film film) {
         /* Permet de domander un film qui n'est pas dans le catalogue
@@ -22,7 +29,7 @@ public class Abonne extends Client{
          */
      }
 
-     public List<Location> consulterHistorique() {
+     public Location[] consulterHistorique() {
         /*Doit retourner une liste de location faites par l'utilisateur actuel
          * this
          * Acces a la base de données nécessaire
@@ -38,7 +45,7 @@ public class Abonne extends Client{
          */
      }
 
-     public void CreerCompteEnfant(String nom,String prenom, List<String> restriction){
+     public void CreerCompteEnfant(String nom,String prenom, String[] restriction){
         /*Permet de crée un compte enfant avec une liste de restrcition
          * Si un compte abonnée a une liste de restriction non vide alors
          * il est considérer comme un compte enfant, il ne peux donc
@@ -88,28 +95,26 @@ public class Abonne extends Client{
         this.tel = tel;
     }
 
-    public String getMdp() {
+    public int getMdp() {
         return mdp;
     }
 
-    public void setMdp(String mdp) {
+    public void setMdp(int mdp) {
         this.mdp = mdp;
     }
 
-    public Date getDateNaissance() {
-        return dateNaissance;
-    }
-
-    public void setDateNaissance(Date dateNaissance) {
-        this.dateNaissance = dateNaissance;
-    }
-
-    public List<String> getRestrictions() {
+    public String[] getRestrictions() {
         return restrictions;
     }
 
-    public void setRestrictions(List<String> restrictions) {
+    public void setRestrictions(String[] restrictions) {
         this.restrictions = restrictions;
+    }
+
+    @Override
+    public String toString() {
+        return "ID = " + ID + "\nnom = " + nom + ", \nprenom = " + prenom + ", \nemail = " + email + ", \nadresse = " + adresse  + ", \ntel = "
+                + tel + ", \nrestrictions = " + Arrays.toString(restrictions) + ", \nsolde = " + solde + ", \nmdp = " + mdp + "\n\n";
     }
     
 }

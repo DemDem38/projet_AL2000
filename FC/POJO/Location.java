@@ -5,7 +5,7 @@ public class Location {
     protected Date dateDebut,dateFin;
     Etat etat;
 
-    public  Location() {
+    public Location() {
         
     }
 }

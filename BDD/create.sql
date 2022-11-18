@@ -1,5 +1,5 @@
 create table abonnes(
-    abonneID number(10) GENERATED ALWAYS AS IDENTITY,
+    abonneID number GENERATED ALWAYS AS IDENTITY,
     nom varchar(50),
     prenom varchar(50),
     email varchar(50),
@@ -15,13 +15,13 @@ create table films(
     nomFilm varchar(100),
     categories varchar(500),
     realisateur varchar(50),
-    synopsis varchar(1000),
+    synopsis varchar(2000),
     acteurs varchar(500),
     constraint films_C1 primary key (nomFilm)
 );
 
 create table supports(
-    supportID number(10) GENERATED ALWAYS AS IDENTITY,
+    supportID number GENERATED ALWAYS AS IDENTITY,
     nomFilm varchar(100),
     typeSup varchar(10),
     constraint supports_C1 primary key (supportID),

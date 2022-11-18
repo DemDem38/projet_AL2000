@@ -1,11 +1,17 @@
 package FC.POJO;
-import java.util.List;
+
+import java.util.Arrays;
 
 public class Film {
     protected String nom,categorie,synopsis,realisateur;
-    protected List<String> acteur;
+    protected String[] acteurs;
 
-    public Film() {
+    public Film(String n, String c, String s, String r, String[] a) {
+        nom = n;
+        categorie = c;
+        synopsis = s;
+        realisateur = r;
+        acteurs = a;
     }
 
     public String getNom() {
@@ -40,12 +46,23 @@ public class Film {
         this.realisateur = realisateur;
     }
 
-    public List<String> getActeur() {
-        return acteur;
+    public String[] getActeurs() {
+        return acteurs;
     }
 
-    public void setActeur(List<String> acteur) {
-        this.acteur = acteur;
+    public void setActeurs(String[] acteurs) {
+        this.acteurs = acteurs;
     }
+
+    @Override
+    public String toString() {
+        return "nom = " + nom + 
+        ", \ncategorie = " + categorie 
+        + ", \nsynopsis = " + synopsis 
+        + ", \nrealisateur = " + realisateur 
+        + ", \nacteurs = " + Arrays.toString(acteurs)
+        + "\n\n";
+    }
+    
     
 }
