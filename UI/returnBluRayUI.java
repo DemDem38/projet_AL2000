@@ -30,7 +30,6 @@ public class returnBluRayUI extends JPanel {
 
         loginButton.addComponentListener(new ComponentAdapter() {
             public void componentResized(ComponentEvent ev) {
-                System.out.println(loginButton.getWidth());
                 topPanel.add(Box.createRigidArea(new Dimension(loginButton.getWidth(), 0)),BorderLayout.WEST);  
             }
         });

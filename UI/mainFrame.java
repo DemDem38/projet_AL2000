@@ -19,11 +19,20 @@ public class mainFrame extends JFrame {
         homeUI homeUI = new homeUI();
         cardsPanel.add(homeUI, "homeUI");
 
+        signUpUI signUI = new signUpUI();
+        cardsPanel.add(signUI, "signUpUI");
+
+        loginUI loginUI = new loginUI();
+        cardsPanel.add(loginUI, "loginUI");
+
+        movieUI movieUI = new movieUI();
+        cardsPanel.add(movieUI, "movieUI");
+
         CardLayout cl = (CardLayout)(cardsPanel.getLayout());
-        cl.show(cardsPanel, "homeUI");
+        cl.show(cardsPanel, "movieUI");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 400);
+        setSize(1200, 600);
         setVisible(true);
     }
 
