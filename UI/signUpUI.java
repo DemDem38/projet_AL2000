@@ -3,9 +3,12 @@ package UI;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.text.LabelView;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,64 +22,85 @@ public class signUpUI extends JPanel {
 
         super(new BorderLayout());
 
-        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JPanel topPanel = new JPanel(new BorderLayout());
         add(topPanel, BorderLayout.NORTH);
 
         JButton loginButton = new JButton("Se connecter");
         loginButton.setFocusable(false);
-        topPanel.add(loginButton);
+        topPanel.add(loginButton, BorderLayout.EAST);
 
-        JPanel centerPanel = new JPanel();
-        centerPanel.setLayout(new BorderLayout());
+        JPanel centerPanel = new JPanel();        
+        centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
+        add(centerPanel, BorderLayout.CENTER);
 
-        JPanel formPanel = new JPanel();
-        formPanel.setLayout(new BoxLayout(formPanel, BoxLayout.PAGE_AXIS));
-        formPanel.setBackground(Color.GREEN);
-        add(formPanel, BorderLayout.CENTER);
+        centerPanel.add(Box.createGlue());
 
         JLabel nomLabel = new JLabel("Nom");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(nomLabel);
+        nomLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(nomLabel);
 
         JTextField nomField = new JTextField();
-        formPanel.add(nomField);
+        nomField.setMaximumSize(new Dimension(300,20));
+        nomField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(nomField);
 
         JLabel prenomLabel = new JLabel("Prénom");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(prenomLabel);
+        prenomLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(prenomLabel);
 
         JTextField prenomField = new JTextField(30);
-        formPanel.add(prenomField);
+        prenomField.setMaximumSize(new Dimension(300,20));
+        prenomField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(prenomField);
 
         JLabel emailLabel = new JLabel("Email");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(emailLabel);
+        emailLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(emailLabel);
 
         JTextField emailField = new JTextField(30);
-        formPanel.add(emailField);
+        emailField.setMaximumSize(new Dimension(300,20));
+        emailField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(emailField);
 
         JLabel adressLabel = new JLabel("Adresse");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(adressLabel);
+        adressLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(adressLabel);
 
         JTextField adressField = new JTextField(30);
-        formPanel.add(adressField);
+        adressField.setMaximumSize(new Dimension(300,20));
+        adressField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(adressField);
 
         JLabel pwdLabel = new JLabel("Mot de passe");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(pwdLabel);
+        pwdLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(pwdLabel);
 
         JTextField pwdField = new JTextField(30);
-        formPanel.add(pwdField);
+        pwdField.setMaximumSize(new Dimension(300,20));
+        pwdField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(pwdField);
 
         JLabel pwdConfLabel = new JLabel("Confirmer mot de passe");
-        nomLabel.setHorizontalAlignment(JLabel.CENTER);
-        formPanel.add(pwdConfLabel);
+        pwdConfLabel.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(pwdConfLabel);
 
         JTextField pwdConfField = new JTextField(30);
-        formPanel.add(pwdConfField);
+        pwdConfField.setMaximumSize(new Dimension(300,20));
+        pwdConfField.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(pwdConfField);
 
-        centerPanel.add(formPanel, BorderLayout.CENTER);
+        centerPanel.add(Box.createGlue());
+
+        JCheckBox conditionCheck = new JCheckBox("Vous confirmez avoir lu et acceptez les conditions générales d'utilisation du service.");
+        conditionCheck.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(conditionCheck);
+
+        centerPanel.add(Box.createGlue());
+
+        JButton inscritButton = new JButton("S'abonner");
+        inscritButton.setFocusable(false);
+        inscritButton.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(inscritButton);
 
         JPanel botPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         add(botPanel, BorderLayout.SOUTH);
