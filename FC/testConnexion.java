@@ -1,6 +1,7 @@
 package FC;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.*;
@@ -11,29 +12,31 @@ import FC.POJO.BluRay;
 import FC.POJO.Film;
 
 public class testConnexion {
+
+    public static String fileToString(String fileName) throws IOException {
+        InputStream in = testConnexion.class.getResourceAsStream(fileName);
+        return new String(in.readAllBytes());
+    }
     public static void main(String[] args) throws IOException {
         Connection connexion = DBConnexion.instance();
         try {
             Statement statement;
             statement = connexion.createStatement();
 
-            Path path = Path.of("BDD/drop.sql");
-            String str = Files.readString(path);
+            String str = fileToString("/BDD/drop.sql");
             String[] sentences = str.split(";");  
             for (String commande : sentences) {
                 statement.execute(commande);
             }
 
-            path = Path.of("BDD/create.sql");
-            str = Files.readString(path);
+            str = fileToString("/BDD/create.sql");
             sentences = str.split(";");
             for (String commande : sentences) {
 
                 statement.execute(commande);
             }
 
-            path = Path.of("BDD/insert.sql");
-            str = Files.readString(path);
+            str = fileToString("/BDD/insert.sql");
             sentences = str.split(";");
             for (String commande : sentences) {
                 statement.execute(commande);
