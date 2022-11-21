@@ -1,5 +1,8 @@
 package UI;
 
+import UI.customPanel.BotPanel;
+import UI.customPanel.TopPanel;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -9,51 +12,22 @@ import java.io.IOException;
 
 public class movieUI extends JPanel {
 
-    Color bgColor;
-    Color buttonColor;
-    Color textColor;
-
     movieUI(){
 
         super(new BorderLayout());
 
-        bgColor = new Color(35, 33, 33);
-        buttonColor = new Color(101, 53, 204);
-        textColor = new Color(255, 255, 255);
-
         // Top panel
-        JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(bgColor);
+        TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
-        JPanel toprightPanel = new JPanel();
-        toprightPanel.setLayout(new BoxLayout(toprightPanel, BoxLayout.PAGE_AXIS));
-        topPanel.add(toprightPanel, BorderLayout.EAST);
-
-        JButton loginButton = new JButton("Se connecter");
-        loginButton.setBackground(buttonColor);
-        loginButton.setForeground(textColor);
-        loginButton.setFocusable(false);
-        toprightPanel.add(loginButton);
-
-        JButton logoutButton = new JButton("Se déconnecter");
-        logoutButton.setBackground(buttonColor);
-        logoutButton.setForeground(textColor);
-        logoutButton.setFocusable(false);
-        toprightPanel.add(logoutButton);
-
         // Center panel
-
         JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.setBackground(bgColor);
         add(centerPanel, BorderLayout.CENTER);
 
         JPanel titlePanel = new JPanel();
-        titlePanel.setBackground(bgColor);
         centerPanel.add(titlePanel, BorderLayout.NORTH);
 
         JLabel titleLabel = new JLabel("Top Gun");
-        titleLabel.setForeground(textColor);
         titleLabel.setFont(new Font(titleLabel.getFont().getFontName(), Font.PLAIN, 25));
         titlePanel.add(titleLabel);
 
@@ -66,8 +40,8 @@ public class movieUI extends JPanel {
             e.printStackTrace();
         }
 
+        // Info panel
         JPanel infoPanel = new JPanel();
-        infoPanel.setBackground(new Color(35, 33, 33));
         infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.PAGE_AXIS));
         infoPanel.setBorder(new EmptyBorder(0,20,0,0));
         centerPanel.add(infoPanel, BorderLayout.CENTER);
@@ -75,7 +49,6 @@ public class movieUI extends JPanel {
         infoPanel.add(Box.createGlue());
 
         JLabel synopsisLabel = new JLabel();
-        synopsisLabel.setForeground(textColor);
         synopsisLabel.setFont(new Font(synopsisLabel.getFont().getFontName(), Font.PLAIN, synopsisLabel.getFont().getSize()));
         synopsisLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
                 "<b>Synopsis :</b>" +
@@ -84,13 +57,11 @@ public class movieUI extends JPanel {
         infoPanel.add(synopsisLabel);
 
         JLabel categoryLabel = new JLabel();
-        categoryLabel.setForeground(textColor);
         categoryLabel.setFont(new Font(categoryLabel.getFont().getFontName(), Font.PLAIN, categoryLabel.getFont().getSize()));
         categoryLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Genre : </b>Action, Aventure, Adulte"));
         infoPanel.add(categoryLabel);
 
         JLabel actorsLabel = new JLabel();
-        actorsLabel.setForeground(textColor);
         actorsLabel.setFont(new Font(actorsLabel.getFont().getFontName(), Font.PLAIN, actorsLabel.getFont().getSize()));
         actorsLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
                 "<br><b>Acteurs :</b>"+
@@ -101,7 +72,6 @@ public class movieUI extends JPanel {
         infoPanel.add(actorsLabel);
 
         JLabel realisatorLabel = new JLabel();
-        realisatorLabel.setForeground(textColor);
         realisatorLabel.setFont(new Font(realisatorLabel.getFont().getFontName(), Font.PLAIN, realisatorLabel.getFont().getSize()));
         realisatorLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Réalisateur : </b>Tony Scott"));
         infoPanel.add(realisatorLabel);
@@ -119,27 +89,21 @@ public class movieUI extends JPanel {
 
         // Right panel
         JPanel rightPanel = new JPanel();
-        rightPanel.setBackground(bgColor);
         rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.PAGE_AXIS));
         centerPanel.add(rightPanel, BorderLayout.EAST);
 
         rightPanel.add(Box.createGlue());
 
         JLabel availableLabel = new JLabel("Blu-Ray disponible dans cette borne : NON");
-        availableLabel.setForeground(textColor);
         availableLabel.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(availableLabel);
 
         JButton askButton = new JButton("Demander à ce que ce film soit disponible en Blu-Ray");
-        askButton.setBackground(buttonColor);
-        askButton.setForeground(textColor);
         askButton.setFocusable(false);
         askButton.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(askButton);
 
         JButton rentButton = new JButton("Louer ce film");
-        rentButton.setBackground(buttonColor);
-        rentButton.setForeground(textColor);
         rentButton.setFocusable(false);
         rentButton.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(rentButton);
@@ -147,14 +111,7 @@ public class movieUI extends JPanel {
         rightPanel.add(Box.createGlue());
 
         // Bot panel
-        JPanel botPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-        botPanel.setBackground(bgColor);
+        BotPanel botPanel = new BotPanel();
         add(botPanel, BorderLayout.SOUTH);
-
-        JButton backButton = new JButton("Retour");
-        backButton.setForeground(textColor);
-        backButton.setBackground(buttonColor);
-        backButton.setFocusable(false);
-        botPanel.add(backButton);
     }
 }

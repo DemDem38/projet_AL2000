@@ -13,8 +13,8 @@ public class mainFrame extends JFrame {
         JPanel cardsPanel = new JPanel(new CardLayout());
         add(cardsPanel);
 
-        returnBluRayUI returnPanel = new returnBluRayUI();
-        cardsPanel.add(returnPanel, "returnPanel");
+        returnBluRayUI returnBluRayUI = new returnBluRayUI();
+        cardsPanel.add(returnBluRayUI, "returnBluRayUI");
 
         homeUI homeUI = new homeUI();
         cardsPanel.add(homeUI, "homeUI");

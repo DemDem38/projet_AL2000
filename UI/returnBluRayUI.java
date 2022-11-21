@@ -1,15 +1,14 @@
 package UI;
 
+import UI.customPanel.BotPanel;
+import UI.customPanel.TopPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class returnBluRayUI extends JPanel {
 
@@ -17,23 +16,11 @@ public class returnBluRayUI extends JPanel {
 
         super(new BorderLayout());
 
-        JPanel topPanel = new JPanel(new BorderLayout());
+        // Top panel
+        TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
-        JButton loginButton = new JButton("Se connecter");
-        loginButton.setFocusable(false);
-        topPanel.add(loginButton, BorderLayout.EAST);
-
-        JLabel soldeLabel = new JLabel("Solde : 15€");
-        soldeLabel.setHorizontalAlignment(JLabel.CENTER);
-        topPanel.add(soldeLabel, BorderLayout.CENTER);
-
-        loginButton.addComponentListener(new ComponentAdapter() {
-            public void componentResized(ComponentEvent ev) {
-                topPanel.add(Box.createRigidArea(new Dimension(loginButton.getWidth(), 0)),BorderLayout.WEST);  
-            }
-        });
-
+        // Center panel
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
         add(centerPanel, BorderLayout.CENTER);
@@ -54,12 +41,9 @@ public class returnBluRayUI extends JPanel {
 
         centerPanel.add(Box.createGlue());
 
-        JPanel botPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        // Bot panel
+        BotPanel botPanel = new BotPanel();
         add(botPanel, BorderLayout.SOUTH);
-
-        JButton backButton = new JButton("Retour");
-        backButton.setFocusable(false);
-        botPanel.add(backButton);
 
     }
 

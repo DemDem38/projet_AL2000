@@ -1,5 +1,7 @@
 package UI;
 
+import UI.customPanel.TopPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,24 +15,21 @@ public class homeUI extends JPanel {
 
         super(new BorderLayout());
 
-        JPanel topPanel = new JPanel(new BorderLayout());
+        // Top panel
+        TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
-        JButton loginButton = new JButton("Se connecter");
-        loginButton.setFocusable(false);
-        topPanel.add(loginButton, BorderLayout.EAST);
-
-
+        // Center panel
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
         add(centerPanel, BorderLayout.CENTER);
 
         centerPanel.add(Box.createGlue());
 
-        JButton defectButton = new JButton("Voir le catalogue");
-        defectButton.setFocusable(false);
-        defectButton.setAlignmentX(CENTER_ALIGNMENT);
-        centerPanel.add(defectButton);
+        JButton catalogButton = new JButton("Voir le catalogue");
+        catalogButton.setFocusable(false);
+        catalogButton.setAlignmentX(CENTER_ALIGNMENT);
+        centerPanel.add(catalogButton);
 
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 

@@ -1,5 +1,7 @@
 package UI;
 
+import UI.customPanel.BotPanel;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -9,7 +11,6 @@ import javax.swing.JTextField;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 
 public class loginUI extends JPanel {
 
@@ -17,7 +18,7 @@ public class loginUI extends JPanel {
 
         super(new BorderLayout());
 
-
+        // Center Panel
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
         add(centerPanel, BorderLayout.CENTER);
@@ -49,13 +50,10 @@ public class loginUI extends JPanel {
 
         centerPanel.add(Box.createGlue());
 
-       
-        JPanel botPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        // Bot panel
+        BotPanel botPanel = new BotPanel();
         add(botPanel, BorderLayout.SOUTH);
-    
-        JButton backButton = new JButton("Retour");
-        backButton.setFocusable(false);
-        botPanel.add(backButton);
+
     }
 
 }

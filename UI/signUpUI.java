@@ -1,20 +1,17 @@
 package UI;
 
+import UI.customPanel.BotPanel;
+import UI.customPanel.TopPanel;
+
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.text.LabelView;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 
 public class signUpUI extends JPanel {
 
@@ -22,13 +19,11 @@ public class signUpUI extends JPanel {
 
         super(new BorderLayout());
 
-        JPanel topPanel = new JPanel(new BorderLayout());
+        // Top panel
+        TopPanel topPanel = new TopPanel();
         add(topPanel, BorderLayout.NORTH);
 
-        JButton loginButton = new JButton("Se connecter");
-        loginButton.setFocusable(false);
-        topPanel.add(loginButton, BorderLayout.EAST);
-
+        // Center panel
         JPanel centerPanel = new JPanel();        
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));
         add(centerPanel, BorderLayout.CENTER);
@@ -102,12 +97,9 @@ public class signUpUI extends JPanel {
         inscritButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(inscritButton);
 
-        JPanel botPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        // Bot panel
+        BotPanel botPanel = new BotPanel();
         add(botPanel, BorderLayout.SOUTH);
-
-        JButton backButton = new JButton("Retour");
-        backButton.setFocusable(false);
-        botPanel.add(backButton);
 
     }
 
