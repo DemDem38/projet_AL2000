@@ -26,11 +26,21 @@ public class movieUI extends JPanel {
         topPanel.setBackground(bgColor);
         add(topPanel, BorderLayout.NORTH);
 
+        JPanel toprightPanel = new JPanel();
+        toprightPanel.setLayout(new BoxLayout(toprightPanel, BoxLayout.PAGE_AXIS));
+        topPanel.add(toprightPanel, BorderLayout.EAST);
+
         JButton loginButton = new JButton("Se connecter");
         loginButton.setBackground(buttonColor);
         loginButton.setForeground(textColor);
         loginButton.setFocusable(false);
-        topPanel.add(loginButton, BorderLayout.EAST);
+        toprightPanel.add(loginButton);
+
+        JButton logoutButton = new JButton("Se déconnecter");
+        logoutButton.setBackground(buttonColor);
+        logoutButton.setForeground(textColor);
+        logoutButton.setFocusable(false);
+        toprightPanel.add(logoutButton);
 
         // Center panel
 
@@ -49,7 +59,7 @@ public class movieUI extends JPanel {
 
         BufferedImage posterImg;
         try {
-            posterImg = ImageIO.read(ClassLoader.getSystemClassLoader().getResource("Images/topgun.jpg"));
+            posterImg = ImageIO.read(getClass().getResource("/res/Images/topgun.jpg"));
             JLabel posterLabel = new JLabel(new ImageIcon(posterImg.getScaledInstance(350, 500, Image.SCALE_FAST)));
             centerPanel.add(posterLabel, BorderLayout.WEST);
         } catch (IOException e) {
@@ -98,8 +108,8 @@ public class movieUI extends JPanel {
 
         BufferedImage awardsImg;
         try {
-            awardsImg = ImageIO.read(ClassLoader.getSystemClassLoader().getResource("Images/awards.png"));
-            JLabel awardsLabel = new JLabel(new ImageIcon(awardsImg.getScaledInstance(480, 250, Image.SCALE_FAST)));
+            awardsImg = ImageIO.read(getClass().getResource("/res/Images/awards.png"));
+            JLabel awardsLabel = new JLabel(new ImageIcon(awardsImg.getScaledInstance(450, 230, Image.SCALE_FAST)));
             infoPanel.add(awardsLabel);
         } catch (IOException e) {
             e.printStackTrace();

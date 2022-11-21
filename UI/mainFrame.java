@@ -28,8 +28,11 @@ public class mainFrame extends JFrame {
         movieUI movieUI = new movieUI();
         cardsPanel.add(movieUI, "movieUI");
 
+        catalogUI catalogUI = new catalogUI();
+        cardsPanel.add(catalogUI, "catalogUI");
+
         CardLayout cl = (CardLayout)(cardsPanel.getLayout());
-        cl.show(cardsPanel, "movieUI");
+        cl.show(cardsPanel, "catalogUI");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 600);
