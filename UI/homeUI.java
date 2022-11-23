@@ -8,15 +8,17 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class homeUI extends JPanel {
 
-    homeUI(){
+    homeUI(mainFrame mainFrame){
 
         super(new BorderLayout());
 
         // Top panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = new TopPanel(mainFrame);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -27,6 +29,12 @@ public class homeUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         JButton catalogButton = new JButton("Voir le catalogue");
+        catalogButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.changeCard("catalogUI");
+            }
+        });
         catalogButton.setFocusable(false);
         catalogButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(catalogButton);
@@ -34,6 +42,12 @@ public class homeUI extends JPanel {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton returnButton = new JButton("Retourner un film");
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainFrame.changeCard("returnBluRayUI");
+            }
+        });
         returnButton.setFocusable(false);
         returnButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(returnButton);

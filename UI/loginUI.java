@@ -1,6 +1,7 @@
 package UI;
 
 import UI.customPanel.BotPanel;
+import UI.customPanel.TopPanel;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -14,9 +15,13 @@ import java.awt.Dimension;
 
 public class loginUI extends JPanel {
 
-    loginUI(){
+    loginUI(mainFrame mainFrame){
 
         super(new BorderLayout());
+
+        // Top panel
+        TopPanel topPanel = new TopPanel(mainFrame);
+        add(topPanel, BorderLayout.NORTH);
 
         // Center Panel
         JPanel centerPanel = new JPanel();
@@ -51,7 +56,7 @@ public class loginUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         // Bot panel
-        BotPanel botPanel = new BotPanel();
+        BotPanel botPanel = new BotPanel(mainFrame, "loginUI");
         add(botPanel, BorderLayout.SOUTH);
 
     }

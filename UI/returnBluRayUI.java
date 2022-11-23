@@ -3,21 +3,20 @@ package UI;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class returnBluRayUI extends JPanel {
 
-    returnBluRayUI(){
+    returnBluRayUI(mainFrame mainFrame){
 
         super(new BorderLayout());
 
         // Top panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = new TopPanel(mainFrame);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -35,6 +34,24 @@ public class returnBluRayUI extends JPanel {
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
         JButton returnButton = new JButton("Rendre un Blu-Ray");
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Object[] possibilities = {"Topgun", "Harry Potter", "Star Wars"};
+                String s = (String) JOptionPane.showInputDialog(
+                        mainFrame,
+                        "Choisissez le film à rendre : ",
+                        "Rendre un film",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        possibilities,
+                        "Topgun");
+                if(s!=null){
+                    //TODO : DVD qui s'apprète à être rendu
+                    mainFrame.changeCard("insertBluRayUI");
+                }
+            }
+        });
         returnButton.setFocusable(false);
         returnButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(returnButton);
@@ -42,7 +59,7 @@ public class returnBluRayUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         // Bot panel
-        BotPanel botPanel = new BotPanel();
+        BotPanel botPanel = new BotPanel(mainFrame, "returnBluRayUI");
         add(botPanel, BorderLayout.SOUTH);
 
     }

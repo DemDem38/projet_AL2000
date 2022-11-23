@@ -15,12 +15,12 @@ import java.awt.Dimension;
 
 public class signUpUI extends JPanel {
 
-    signUpUI(){
+    signUpUI(mainFrame mainFrame){
 
         super(new BorderLayout());
 
         // Top panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = new TopPanel(mainFrame);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -98,7 +98,7 @@ public class signUpUI extends JPanel {
         centerPanel.add(inscritButton);
 
         // Bot panel
-        BotPanel botPanel = new BotPanel();
+        BotPanel botPanel = new BotPanel(mainFrame, "signUpUI");
         add(botPanel, BorderLayout.SOUTH);
 
     }

@@ -12,12 +12,12 @@ import java.io.IOException;
 
 public class movieUI extends JPanel {
 
-    movieUI(){
+    movieUI(mainFrame mainFrame){
 
         super(new BorderLayout());
 
         // Top panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = new TopPanel(mainFrame);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -111,7 +111,7 @@ public class movieUI extends JPanel {
         rightPanel.add(Box.createGlue());
 
         // Bot panel
-        BotPanel botPanel = new BotPanel();
+        BotPanel botPanel = new BotPanel(mainFrame, "movieUI");
         add(botPanel, BorderLayout.SOUTH);
     }
 }

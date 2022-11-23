@@ -4,21 +4,18 @@ package UI;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class catalogUI extends JPanel {
 
-    catalogUI(){
+    catalogUI(mainFrame mainFrame){
 
         super(new BorderLayout());
 
         // Top panel
-        TopPanel topPanel = new TopPanel();
+        TopPanel topPanel = new TopPanel(mainFrame);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -50,14 +47,8 @@ public class catalogUI extends JPanel {
         centerPanel.add(movieScrollPanel, BorderLayout.CENTER);
 
         for (int i=0; i<25; i++){
-            BufferedImage img1;
-            try {
-                img1 = ImageIO.read(getClass().getResource("/res/Images/topgun.jpg"));
-                JLabel label1 = new JLabel(new ImageIcon(img1.getScaledInstance(175, 250, Image.SCALE_FAST)));
-                moviePanel.add(label1);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            movieTile tile = new movieTile(i, "/res/Images/topgun.jpg", mainFrame);
+            moviePanel.add(tile);
         }
 
         // Category panel
@@ -76,7 +67,7 @@ public class catalogUI extends JPanel {
         }
 
         // Bot panel
-        BotPanel botPanel = new BotPanel();
+        BotPanel botPanel = new BotPanel(mainFrame, "catalogUI");
         add(botPanel, BorderLayout.SOUTH);
         
     }
