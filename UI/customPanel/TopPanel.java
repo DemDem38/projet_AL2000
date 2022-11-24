@@ -68,13 +68,14 @@ public class TopPanel extends JPanel implements Observateur {
 
     @Override
     public void metAJour() {
-        // TODO récupérer solde
-        soldeLabel.setText("15€");
         // TODO vérifier si connecté
         if(false){
+            // TODO récupérer solde
+            soldeLabel.setText("15€");
             loginButton.setText("Se déconnecter");
             manageButton.setText("Gérer mon compte");
         }else{
+            soldeLabel.setVisible(false);
             loginButton.setText("Se connecter");
             manageButton.setText("M'inscrire");
         }

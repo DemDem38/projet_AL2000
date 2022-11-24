@@ -3,15 +3,12 @@ package UI;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class LoginUI extends JPanel {
 
@@ -43,12 +40,18 @@ public class LoginUI extends JPanel {
         passwordLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(passwordLabel);
 
-        JTextField passwordField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
         passwordField.setMaximumSize(new Dimension(300,50));
         passwordField.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(passwordField);
 
         JButton loginButton = new JButton("Connexion");
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO connexion
+            }
+        });
         loginButton.setFocusable(false);
         loginButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(loginButton);
