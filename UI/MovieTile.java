@@ -1,5 +1,7 @@
 package UI;
 
+import FC.POJO.Film;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -10,11 +12,11 @@ import java.io.IOException;
 
 public class MovieTile extends JLabel {
 
-    int supportID;
+    private Film film;
 
-    MovieTile(int supportID, String ImgPath, MainFrame mainFrame){
+    MovieTile(Film film, String ImgPath, MainFrame mainFrame){
 
-        this.supportID = supportID;
+        this.film = film;
 
         try {
             BufferedImage img;
@@ -31,5 +33,13 @@ public class MovieTile extends JLabel {
                 mainFrame.changeCard("movieUI");
             }
         });
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    public void setFilm(Film film) {
+        this.film = film;
     }
 }
