@@ -59,6 +59,18 @@ insert into locations values(11, timestamp '2022-05-12 9:33:18', timestamp '2022
 insert into locations values(12, timestamp '2022-10-12 7:22:02', timestamp '2022-10-12 19:22:02', null, 'termine');
 insert into locations values(14, timestamp '2022-08-12 4:45:23', timestamp '2022-08-12 16:45:23', 7, 'termine');
 insert into locations values(13, timestamp '2022-10-12 21:22:23', timestamp '2022-10-13 9:22:23', null, 'termine');
-insert into locations values(15, timestamp '2022-10-14 16:22:44', timestamp '2022-10-15 4:22:44', null, 'termine')
+insert into locations values(15, timestamp '2022-10-14 16:22:44', timestamp '2022-10-15 4:22:44', null, 'termine');
+
+-- INSERT 10 DEMANDESAJOUTS
+insert into demandesAjouts values(1, 'Labyrinthe');
+insert into demandesAjouts values(2, 'Titanic');
+insert into demandesAjouts values(3, 'Pulp Fiction');
+insert into demandesAjouts values(4, 'Psychose');
+insert into demandesAjouts values(5, 'La liste de Schindler');
+insert into demandesAjouts values(6, 'Taxi driver');
+insert into demandesAjouts values(7, 'Retour vers le futur');
+insert into demandesAjouts values(8, 'Matrix');
+insert into demandesAjouts values(9, 'Harry Potter');
+insert into demandesAjouts values(10, 'Fight club')
 
 
