@@ -1,16 +1,24 @@
 package UI;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import FC.AL2000;
+
+import javax.swing.*;
 import java.awt.CardLayout;
 
-public class MainFrame extends JFrame {
+public class MainFrame extends JFrame implements Runnable {
 
     JPanel cardsPanel;
+    AL2000 model;
+    CollecteurEvenements controller;
 
-    MainFrame(){
-        
+    MainFrame(AL2000 m, CollecteurEvenements c) {
         super("AL2000");
+        model = model;
+        controller = c;
+    }
+
+    @Override
+    public void run() {
 
         cardsPanel = new JPanel(new CardLayout());
         add(cardsPanel);
@@ -41,10 +49,16 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1200, 600);
         setVisible(true);
+
     }
 
     public void changeCard(String card){
         CardLayout cl = (CardLayout)(cardsPanel.getLayout());
         cl.show(cardsPanel, card);
     }
+
+    public static void demarrer(AL2000 model, CollecteurEvenements c) {
+        SwingUtilities.invokeLater(new MainFrame(model, c));
+    }
+
 }

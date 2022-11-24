@@ -16,12 +16,12 @@ public class AL2000 extends Observable {
     SupportDAO supportDAO;
     Connection connexion;
 
-    AL2000() {
-        connexion = DBConnexion.instance();
-        abonneDAO = new AbonneDAO(connexion);
-        filmDAO = new FilmDAO(connexion);
-        locationDAO = new LocationDAO(connexion);
-        supportDAO = new SupportDAO(connexion);
+    public AL2000() {
+//        connexion = DBConnexion.instance();
+//        abonneDAO = new AbonneDAO(connexion);
+//        filmDAO = new FilmDAO(connexion);
+//        locationDAO = new LocationDAO(connexion);
+//        supportDAO = new SupportDAO(connexion);
     }
 
     /*public Abonne Connexion(String email, int mdp) {
