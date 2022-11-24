@@ -54,6 +54,12 @@ public class Film {
         this.acteurs = acteurs;
     }
 
+    public String toSQL(){
+        String s ="";
+        s = nom + "," + categorie + "," + synopsis + "," + realisateur + "," + String.join(",", acteurs);
+        return s;
+    }
+
     @Override
     public String toString() {
         return "nom = " + nom + 

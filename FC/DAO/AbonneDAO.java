@@ -18,7 +18,7 @@ public class AbonneDAO extends DAO<Abonne> {
     }
 
     @Override
-    public Abonne read(int id) {
+    public Abonne read(Object obj) {
         // TODO Auto-generated method stub
         return null;
     }

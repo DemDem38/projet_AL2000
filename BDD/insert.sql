@@ -26,11 +26,20 @@ insert into supports(nomFilm, typeSup) values('La ligne verte', 'BluRay');
 insert into supports(nomFilm, typeSup) values('Avatar', 'BluRay');
 insert into supports(nomFilm, typeSup) values('ça', 'BluRay');
 insert into supports(nomFilm, typeSup) values('Avatar', 'BluRay');
-insert into supports(nomFilm, typeSup) values('Avatar', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Top Gun : Maverick', 'QRCode');
 insert into supports(nomFilm, typeSup) values('ça', 'QRCode');
-insert into supports(nomFilm, typeSup) values('Parasite', 'QRCode');
-insert into supports(nomFilm, typeSup) values('Avatar', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Charlie et la chocolaterie', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Le loup de Wall Street', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Forest Gump', 'QRCode');
+insert into supports(nomFilm, typeSup) values('La ligne verte', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Batman vs Superman', 'QRCode');
+insert into supports(nomFilm, typeSup) values('The Batman', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Ted', 'QRCode');
+insert into supports(nomFilm, typeSup) values('The Wire', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Je suis une légende', 'QRCode');
 insert into supports(nomFilm, typeSup) values('Lucy', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Parasite', 'QRCode');
+insert into supports(nomFilm, typeSup) values('Alice in borderlands', 'QRCode');
 
 -- INSERT 10 ABONNES
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Bialiatski', 'Alès', 'ales@etu.univ-grenoble-alpes.fr', '39 RTE DE TURIN', '0435876371', null, 100, 417945231);
@@ -62,15 +71,15 @@ insert into locations values(13, timestamp '2022-10-12 21:22:23', timestamp '202
 insert into locations values(15, timestamp '2022-10-14 16:22:44', timestamp '2022-10-15 4:22:44', null, 'termine');
 
 -- INSERT 10 DEMANDESAJOUTS
-insert into demandesAjouts values(1, 'Labyrinthe');
-insert into demandesAjouts values(2, 'Titanic');
-insert into demandesAjouts values(3, 'Pulp Fiction');
-insert into demandesAjouts values(4, 'Psychose');
-insert into demandesAjouts values(5, 'La liste de Schindler');
-insert into demandesAjouts values(6, 'Taxi driver');
-insert into demandesAjouts values(7, 'Retour vers le futur');
-insert into demandesAjouts values(8, 'Matrix');
-insert into demandesAjouts values(9, 'Harry Potter');
-insert into demandesAjouts values(10, 'Fight club')
+insert into demandesAjouts values(1, 'Top Gun : Maverick');
+insert into demandesAjouts values(2, 'Charlie et la chocolaterie');
+insert into demandesAjouts values(3, 'Le loup de Wall Street');
+insert into demandesAjouts values(4, 'Top Gun : Maverick');
+insert into demandesAjouts values(5, 'Charlie et la chocolaterie');
+insert into demandesAjouts values(6, 'Charlie et la chocolaterie');
+insert into demandesAjouts values(7, 'Le loup de Wall Street');
+insert into demandesAjouts values(8, 'Batman vs Superman');
+insert into demandesAjouts values(9, 'Le loup de Wall Street');
+insert into demandesAjouts values(10, 'Charlie et la chocolaterie')
 
 

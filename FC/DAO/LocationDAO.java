@@ -1,6 +1,8 @@
 package FC.DAO;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import FC.POJO.Location;
 
@@ -18,7 +20,7 @@ public class LocationDAO extends DAO<Location> {
     }
 
     @Override
-    public Location read(int id) {
+    public Location read(Object obj) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -30,9 +32,29 @@ public class LocationDAO extends DAO<Location> {
     }
 
     @Override
-    public boolean delete(Location obj) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean delete(Location location) {
+        boolean b = false;
+        try {
+            b = this.connect.createStatement().execute("delete from locations where supportID = " + location.getSupportID());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+    
+    public Location[] readListe(int supportID) {
+        Location[] liste = new Location[1000];
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from locations where supportID = " + supportID);
+            int i = 0;
+            while(res.next()){
+                liste[i] = new Location(res.getInt("supportID"), res.getInt("abonneID"));
+                i++;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        return liste;
     }
     
 }
