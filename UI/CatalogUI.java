@@ -8,9 +8,9 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class catalogUI extends JPanel {
+public class CatalogUI extends JPanel {
 
-    catalogUI(mainFrame mainFrame){
+    CatalogUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 
@@ -47,7 +47,7 @@ public class catalogUI extends JPanel {
         centerPanel.add(movieScrollPanel, BorderLayout.CENTER);
 
         for (int i=0; i<25; i++){
-            movieTile tile = new movieTile(i, "/res/Images/topgun.jpg", mainFrame);
+            MovieTile tile = new MovieTile(i, "/res/Images/topgun.jpg", mainFrame);
             moviePanel.add(tile);
         }
 

@@ -4,36 +4,36 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.CardLayout;
 
-public class mainFrame extends JFrame {
+public class MainFrame extends JFrame {
 
     JPanel cardsPanel;
 
-    mainFrame(){
+    MainFrame(){
         
         super("AL2000");
 
         cardsPanel = new JPanel(new CardLayout());
         add(cardsPanel);
 
-        returnBluRayUI returnBluRayUI = new returnBluRayUI(this);
+        ReturnBluRayUI returnBluRayUI = new ReturnBluRayUI(this);
         cardsPanel.add(returnBluRayUI, "returnBluRayUI");
 
-        homeUI homeUI = new homeUI(this);
+        HomeUI homeUI = new HomeUI(this);
         cardsPanel.add(homeUI, "homeUI");
 
-        signUpUI signUI = new signUpUI(this);
+        SignUpUI signUI = new SignUpUI(this);
         cardsPanel.add(signUI, "signUpUI");
 
-        loginUI loginUI = new loginUI(this);
+        LoginUI loginUI = new LoginUI(this);
         cardsPanel.add(loginUI, "loginUI");
 
-        movieUI movieUI = new movieUI(this);
+        MovieUI movieUI = new MovieUI(this);
         cardsPanel.add(movieUI, "movieUI");
 
-        catalogUI catalogUI = new catalogUI(this);
+        CatalogUI catalogUI = new CatalogUI(this);
         cardsPanel.add(catalogUI, "catalogUI");
 
-        insertBluRayUI insertBluRayUI = new insertBluRayUI(this);
+        InsertBluRayUI insertBluRayUI = new InsertBluRayUI(this);
         cardsPanel.add(insertBluRayUI, "insertBluRayUI");
 
         changeCard("homeUI");

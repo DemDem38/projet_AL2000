@@ -1,9 +1,9 @@
 package UI;
 
-public class commande {
+public class Commande {
     private final String commande;
 
-    commande(String commande){
+    Commande(String commande){
         this.commande = commande;
     }
 

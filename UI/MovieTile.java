@@ -8,11 +8,11 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class movieTile extends JLabel {
+public class MovieTile extends JLabel {
 
     int supportID;
 
-    movieTile(int supportID, String ImgPath, mainFrame mainFrame){
+    MovieTile(int supportID, String ImgPath, MainFrame mainFrame){
 
         this.supportID = supportID;
 

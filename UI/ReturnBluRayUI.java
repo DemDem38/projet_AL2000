@@ -9,9 +9,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class returnBluRayUI extends JPanel {
+public class ReturnBluRayUI extends JPanel {
 
-    returnBluRayUI(mainFrame mainFrame){
+    ReturnBluRayUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 

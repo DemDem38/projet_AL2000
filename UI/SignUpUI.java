@@ -13,9 +13,9 @@ import javax.swing.JCheckBox;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-public class signUpUI extends JPanel {
+public class SignUpUI extends JPanel {
 
-    signUpUI(mainFrame mainFrame){
+    SignUpUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 

@@ -1,7 +1,7 @@
 package UI.customPanel;
 
 import FC.PATTERNS.Observateur;
-import UI.mainFrame;
+import UI.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,7 +16,7 @@ public class TopPanel extends JPanel implements Observateur {
     JButton manageButton;
     JLabel soldeLabel;
 
-    public TopPanel(mainFrame mainFrame){
+    public TopPanel(MainFrame mainFrame){
 
         super(new BorderLayout());
 

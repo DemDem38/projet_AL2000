@@ -11,9 +11,9 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class homeUI extends JPanel {
+public class HomeUI extends JPanel {
 
-    homeUI(mainFrame mainFrame){
+    HomeUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 

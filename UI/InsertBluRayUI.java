@@ -7,9 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class insertBluRayUI extends JPanel {
+public class InsertBluRayUI extends JPanel {
 
-    insertBluRayUI(mainFrame mainFrame){
+    InsertBluRayUI(MainFrame mainFrame){
         super(new BorderLayout());
 
         JPanel centerPanel = new JPanel();

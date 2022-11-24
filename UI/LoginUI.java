@@ -13,9 +13,9 @@ import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 
-public class loginUI extends JPanel {
+public class LoginUI extends JPanel {
 
-    loginUI(mainFrame mainFrame){
+    LoginUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 

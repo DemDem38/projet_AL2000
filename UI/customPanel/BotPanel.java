@@ -1,6 +1,6 @@
 package UI.customPanel;
 
-import UI.mainFrame;
+import UI.MainFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +12,7 @@ public class BotPanel extends JPanel {
     JButton backButton;
     String currentPage;
 
-    public BotPanel(mainFrame mainFrame, String currentPage){
+    public BotPanel(MainFrame mainFrame, String currentPage){
 
         super(new FlowLayout(FlowLayout.RIGHT));
 

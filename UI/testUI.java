@@ -5,7 +5,7 @@ import javax.swing.SwingUtilities;
 public class testUI implements Runnable {
 
     public void run() {
-        mainFrame frame = new mainFrame();
+        MainFrame frame = new MainFrame();
     }
 
     public static void main(String[] args) {

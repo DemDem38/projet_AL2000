@@ -10,9 +10,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class movieUI extends JPanel {
+public class MovieUI extends JPanel {
 
-    movieUI(mainFrame mainFrame){
+    MovieUI(MainFrame mainFrame){
 
         super(new BorderLayout());
 
