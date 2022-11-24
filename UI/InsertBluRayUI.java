@@ -9,8 +9,13 @@ import java.awt.event.ActionListener;
 
 public class InsertBluRayUI extends JPanel {
 
-    InsertBluRayUI(MainFrame mainFrame){
+    CollecteurEvenements controller;
+
+    InsertBluRayUI(MainFrame mainFrame, CollecteurEvenements c){
+
         super(new BorderLayout());
+
+        controller = c;
 
         JPanel centerPanel = new JPanel();
         centerPanel.setLayout(new BoxLayout(centerPanel, BoxLayout.PAGE_AXIS));

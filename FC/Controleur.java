@@ -11,7 +11,20 @@ public class Controleur implements CollecteurEvenements {
 
     @Override
     public boolean commande(Commande c) {
-        // TODO Auto-generated method stub
-        return false;
+        System.out.println(c.getCommande());
+        switch(c.getCommande()){
+            case "connexion":
+                System.out.println(c.getLogin());
+                System.out.println(c.getPassword());
+                break;
+            case "louer":
+                System.out.println(c.getSupport());
+                break;
+            case "demandeBluRay":
+                break;
+            default:
+                return false;
+        }
+        return true;
     }    
 }

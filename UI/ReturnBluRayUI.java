@@ -1,5 +1,6 @@
 package UI;
 
+import FC.AL2000;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
@@ -11,12 +12,18 @@ import java.awt.event.ActionListener;
 
 public class ReturnBluRayUI extends JPanel {
 
-    ReturnBluRayUI(MainFrame mainFrame){
+    AL2000 model;
+    CollecteurEvenements controller;
+
+    ReturnBluRayUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
+        model = m;
+        controller = c;
+
         // Top panel
-        TopPanel topPanel = new TopPanel(mainFrame);
+        TopPanel topPanel = new TopPanel(mainFrame, model, controller);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -37,6 +44,7 @@ public class ReturnBluRayUI extends JPanel {
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // TODO recupérer les locations en cours du client
                 Object[] possibilities = {"Topgun", "Harry Potter", "Star Wars"};
                 String s = (String) JOptionPane.showInputDialog(
                         mainFrame,
@@ -45,7 +53,7 @@ public class ReturnBluRayUI extends JPanel {
                         JOptionPane.PLAIN_MESSAGE,
                         null,
                         possibilities,
-                        "Topgun");
+                        null);
                 if(s!=null){
                     //TODO : DVD qui s'apprète à être rendu
                     mainFrame.changeCard("insertBluRayUI");

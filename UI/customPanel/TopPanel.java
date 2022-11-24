@@ -1,6 +1,8 @@
 package UI.customPanel;
 
+import FC.AL2000;
 import FC.PATTERNS.Observateur;
+import UI.CollecteurEvenements;
 import UI.MainFrame;
 
 import javax.swing.*;
@@ -15,10 +17,16 @@ public class TopPanel extends JPanel implements Observateur {
     JButton loginButton;
     JButton manageButton;
     JLabel soldeLabel;
+    AL2000 model;
+    CollecteurEvenements controller;
 
-    public TopPanel(MainFrame mainFrame){
+    public TopPanel(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
+
+        model = m;
+        model.ajouteObservateur(this);
+        controller = c;
 
         JPanel toprightPanel = new JPanel(new GridLayout(2,1));
         add(toprightPanel, BorderLayout.EAST);

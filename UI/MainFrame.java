@@ -13,7 +13,7 @@ public class MainFrame extends JFrame implements Runnable {
 
     MainFrame(AL2000 m, CollecteurEvenements c) {
         super("AL2000");
-        model = model;
+        model = m;
         controller = c;
     }
 
@@ -23,25 +23,25 @@ public class MainFrame extends JFrame implements Runnable {
         cardsPanel = new JPanel(new CardLayout());
         add(cardsPanel);
 
-        ReturnBluRayUI returnBluRayUI = new ReturnBluRayUI(this);
+        ReturnBluRayUI returnBluRayUI = new ReturnBluRayUI(this, model, controller);
         cardsPanel.add(returnBluRayUI, "returnBluRayUI");
 
-        HomeUI homeUI = new HomeUI(this);
+        HomeUI homeUI = new HomeUI(this, model, controller);
         cardsPanel.add(homeUI, "homeUI");
 
-        SignUpUI signUI = new SignUpUI(this);
+        SignUpUI signUI = new SignUpUI(this, model, controller);
         cardsPanel.add(signUI, "signUpUI");
 
-        LoginUI loginUI = new LoginUI(this);
+        LoginUI loginUI = new LoginUI(this, model, controller);
         cardsPanel.add(loginUI, "loginUI");
 
-        MovieUI movieUI = new MovieUI(this);
+        MovieUI movieUI = new MovieUI(this, model, controller);
         cardsPanel.add(movieUI, "movieUI");
 
-        CatalogUI catalogUI = new CatalogUI(this);
+        CatalogUI catalogUI = new CatalogUI(this, model, controller);
         cardsPanel.add(catalogUI, "catalogUI");
 
-        InsertBluRayUI insertBluRayUI = new InsertBluRayUI(this);
+        InsertBluRayUI insertBluRayUI = new InsertBluRayUI(this, controller);
         cardsPanel.add(insertBluRayUI, "insertBluRayUI");
 
         changeCard("homeUI");

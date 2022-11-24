@@ -1,5 +1,6 @@
 package UI;
 
+import FC.AL2000;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
@@ -15,12 +16,18 @@ import java.awt.Dimension;
 
 public class SignUpUI extends JPanel {
 
-    SignUpUI(MainFrame mainFrame){
+    AL2000 model;
+    CollecteurEvenements controller;
+
+    SignUpUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
+        model = m;
+        controller = c;
+
         // Top panel
-        TopPanel topPanel = new TopPanel(mainFrame);
+        TopPanel topPanel = new TopPanel(mainFrame, model, controller);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel

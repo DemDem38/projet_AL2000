@@ -1,5 +1,8 @@
 package UI;
 
+import FC.AL2000;
+import FC.PATTERNS.Observateur;
+import UI.customDialog.RentDialog;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
@@ -7,17 +10,25 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class MovieUI extends JPanel {
 
-    MovieUI(MainFrame mainFrame){
+    AL2000 model;
+    CollecteurEvenements controller;
+
+    MovieUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
+        model = m;
+        controller = c;
+
         // Top panel
-        TopPanel topPanel = new TopPanel(mainFrame);
+        TopPanel topPanel = new TopPanel(mainFrame, model, controller);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
@@ -99,11 +110,28 @@ public class MovieUI extends JPanel {
         rightPanel.add(availableLabel);
 
         JButton askButton = new JButton("Demander à ce que ce film soit disponible en Blu-Ray");
+        askButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO demande d'ajout du film comme BluRay
+                Commande c = new Commande("demandeBluRay");
+                controller.commande(c);
+                askButton.setText("Votre demande à bien été prise en compte");
+                askButton.setEnabled(false);
+            }
+        });
         askButton.setFocusable(false);
         askButton.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(askButton);
 
         JButton rentButton = new JButton("Louer ce film");
+        rentButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO savoir si le film est disponible en bluRay
+                RentDialog dialog = new RentDialog(mainFrame, controller, true);
+            }
+        });
         rentButton.setFocusable(false);
         rentButton.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(rentButton);

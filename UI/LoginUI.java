@@ -1,5 +1,6 @@
 package UI;
 
+import FC.AL2000;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
@@ -12,12 +13,18 @@ import java.awt.event.ActionListener;
 
 public class LoginUI extends JPanel {
 
-    LoginUI(MainFrame mainFrame){
+    AL2000 model;
+    CollecteurEvenements controller;
+
+    LoginUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
+        model = m;
+        controller = c;
+
         // Top panel
-        TopPanel topPanel = new TopPanel(mainFrame);
+        TopPanel topPanel = new TopPanel(mainFrame, model, controller);
         add(topPanel, BorderLayout.NORTH);
 
         // Center Panel
@@ -50,6 +57,10 @@ public class LoginUI extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO connexion
+                Commande c = new Commande("connexion");
+                c.setLogin(loginField.getText());
+                c.setPassword(String.valueOf(passwordField.getPassword()));
+                controller.commande(c);
             }
         });
         loginButton.setFocusable(false);

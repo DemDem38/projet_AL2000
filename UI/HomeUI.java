@@ -1,5 +1,6 @@
 package UI;
 
+import FC.AL2000;
 import UI.customPanel.TopPanel;
 
 import javax.swing.Box;
@@ -13,12 +14,18 @@ import java.awt.event.ActionListener;
 
 public class HomeUI extends JPanel {
 
-    HomeUI(MainFrame mainFrame){
+    AL2000 model;
+    CollecteurEvenements controller;
+
+    HomeUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
+        model = m;
+        controller = c;
+
         // Top panel
-        TopPanel topPanel = new TopPanel(mainFrame);
+        TopPanel topPanel = new TopPanel(mainFrame, model, controller);
         add(topPanel, BorderLayout.NORTH);
 
         // Center panel
