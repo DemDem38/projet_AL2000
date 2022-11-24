@@ -4,15 +4,11 @@ import FC.AL2000;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
+import javax.swing.*;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class SignUpUI extends JPanel {
 
@@ -77,7 +73,7 @@ public class SignUpUI extends JPanel {
         pwdLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(pwdLabel);
 
-        JTextField pwdField = new JTextField(30);
+        JPasswordField pwdField = new JPasswordField(30);
         pwdField.setMaximumSize(new Dimension(300,20));
         pwdField.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(pwdField);
@@ -86,7 +82,7 @@ public class SignUpUI extends JPanel {
         pwdConfLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(pwdConfLabel);
 
-        JTextField pwdConfField = new JTextField(30);
+        JPasswordField pwdConfField = new JPasswordField(30);
         pwdConfField.setMaximumSize(new Dimension(300,20));
         pwdConfField.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(pwdConfField);
@@ -100,6 +96,19 @@ public class SignUpUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         JButton inscritButton = new JButton("S'abonner");
+        inscritButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Commande c = new Commande("abonnement");
+                c.setNom(nomField.getText());
+                c.setPrenom(prenomField.getText());
+                c.setLogin(emailField.getText());
+                c.setAdresse(adressField.getText());
+                c.setPassword(pwdConfLabel.getText());
+                controller.commande(c);
+                mainFrame.changeCard("homeUI");
+            }
+        });
         inscritButton.setFocusable(false);
         inscritButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(inscritButton);

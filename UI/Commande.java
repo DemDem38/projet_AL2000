@@ -5,6 +5,9 @@ public class Commande {
     private String login;
     private String password;
     private String support;
+    private String nom;
+    private String prenom;
+    private String adresse;
 
     public Commande(String commande){
         this.commande = commande;
@@ -36,5 +39,29 @@ public class Commande {
 
     public void setSupport(String support) {
         this.support = support;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
 }

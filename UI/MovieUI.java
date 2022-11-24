@@ -105,6 +105,7 @@ public class MovieUI extends JPanel {
 
         rightPanel.add(Box.createGlue());
 
+        // TODO savoir si le film est disponible en BluRay
         JLabel availableLabel = new JLabel("Blu-Ray disponible dans cette borne : NON");
         availableLabel.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(availableLabel);

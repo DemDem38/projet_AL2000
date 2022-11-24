@@ -22,6 +22,17 @@ public class Controleur implements CollecteurEvenements {
                 break;
             case "demandeBluRay":
                 break;
+            case "BluRayRendu":
+                break;
+            case "BluRayDefectueux":
+                break;
+            case "Abonnement":
+                System.out.println(c.getNom());
+                System.out.println(c.getPrenom());
+                System.out.println(c.getLogin());
+                System.out.println(c.getPassword());
+                System.out.println(c.getAdresse());
+                break;
             default:
                 return false;
         }

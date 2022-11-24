@@ -34,6 +34,27 @@ public class ReturnBluRayUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         JButton defectButton = new JButton("Blu-Ray défectueux");
+        defectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO recupérer les locations en cours du client
+                Object[] possibilities = {"Topgun", "Harry Potter", "Star Wars"};
+                String s = (String) JOptionPane.showInputDialog(
+                        mainFrame,
+                        "Choisissez le film défectueux : ",
+                        "Rendre un film défectueux",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        possibilities,
+                        null);
+                if(s!=null){
+                    //TODO : DVD qui s'apprète à être rendu
+                    Commande c = new Commande("BluRayDefectueux");
+                    controller.commande(c);
+                    mainFrame.changeCard("insertBluRayUI");
+                }
+            }
+        });
         defectButton.setFocusable(false);
         defectButton.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(defectButton);
@@ -55,7 +76,9 @@ public class ReturnBluRayUI extends JPanel {
                         possibilities,
                         null);
                 if(s!=null){
-                    //TODO : DVD qui s'apprète à être rendu
+                    //TODO : DVD qui s'apprète à être rendu infos ?
+                    Commande c = new Commande("BluRayRendu");
+                    controller.commande(c);
                     mainFrame.changeCard("insertBluRayUI");
                 }
             }
