@@ -39,6 +39,8 @@ public class HomeUI extends JPanel {
         catalogButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                model.updateCatalogue();
+                model.updateCategories();
                 mainFrame.changeCard("catalogUI");
             }
         });

@@ -2,6 +2,7 @@ package UI;
 
 
 import FC.AL2000;
+import FC.PATTERNS.Observateur;
 import FC.POJO.Film;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
@@ -15,22 +16,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class CatalogUI extends JPanel {
+public class CatalogUI extends JPanel implements Observateur {
 
     AL2000 model;
     CollecteurEvenements controller;
     ArrayList<MovieTile> movies;
-    ArrayList<JCheckBox> categories;
+    ArrayList<JCheckBox> categoriesCB;
     JTextField searchBar;
+    MainFrame mainFrame;
+    JPanel moviePanel;
+    JPanel categoryPanel;
 
     CatalogUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
         model = m;
+        model.ajouteObservateur(this);
         controller = c;
         movies = new ArrayList<>();
-        categories = new ArrayList<>();
+        categoriesCB = new ArrayList<>();
 
         // Top panel
         TopPanel topPanel = new TopPanel(mainFrame, model, controller);
@@ -57,22 +62,16 @@ public class CatalogUI extends JPanel {
 //        searchPanel.add(searchButton);
 
         // Movie panel
-        JPanel moviePanel = new JPanel(new GridLayout(0, 5));
+        moviePanel = new JPanel(new GridLayout(0, 5));
         GridLayout gl = (GridLayout) moviePanel.getLayout();
         gl.setVgap(30);
 
         JScrollPane movieScrollPanel = new JScrollPane(moviePanel);
+        movieScrollPanel.setBorder(BorderFactory.createEmptyBorder());
         centerPanel.add(movieScrollPanel, BorderLayout.CENTER);
 
-        // TODO afficher les vrai films
-        for (int i=0; i<25; i++){
-            MovieTile tile = new MovieTile(new Film("Top Gun", "Action", "Synopsis", "Anthony", null), "/res/Images/topgun.jpg", mainFrame);
-            movies.add(tile);
-            moviePanel.add(tile);
-        }
-
         // Category panel
-        JPanel categoryPanel = new JPanel();
+        categoryPanel = new JPanel();
         categoryPanel.setLayout(new BoxLayout(categoryPanel, BoxLayout.PAGE_AXIS));
 
         JScrollPane categoryScrollPanel = new JScrollPane(categoryPanel);
@@ -80,19 +79,6 @@ public class CatalogUI extends JPanel {
         categoryScrollPanel.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         centerPanel.add(categoryScrollPanel, BorderLayout.WEST);
 
-        // TODO afficher les vrais catégories
-        for (int i=0; i<20; i++){
-            JCheckBox cb = new JCheckBox(i < 10 ? "Action":"Aventure");
-            cb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateSearch();
-                }
-            });
-            cb.setMargin(new Insets(0,0,0,35));
-            categories.add(cb);
-            categoryPanel.add(cb);
-        }
 
         searchBar.getDocument().addDocumentListener(new DocumentListener() {
             @Override
@@ -117,7 +103,7 @@ public class CatalogUI extends JPanel {
 
     public ArrayList<JCheckBox> getSelectedCategories(){
         ArrayList<JCheckBox> selectedCategories = new ArrayList<>();
-        for(JCheckBox cb : categories){
+        for(JCheckBox cb : categoriesCB){
             if (cb.isSelected()){
                 selectedCategories.add(cb);
             }
@@ -126,21 +112,60 @@ public class CatalogUI extends JPanel {
     }
 
     public void updateSearch(){
+        moviePanel.removeAll();
         ArrayList<JCheckBox> selectedCategories = getSelectedCategories();
         for (MovieTile movie : movies) {
             Film film = movie.getFilm();
-            movie.setVisible(true);
+            moviePanel.add(movie);
+            //movie.setVisible(true);
             if (!searchBar.getText().isEmpty() && !film.getNom().toLowerCase().replace(" ","").contains(searchBar.getText().toLowerCase().replace(" ",""))){
-                movie.setVisible(false);
+                moviePanel.remove(movie);
+                //movie.setVisible(false);
             }
             if(!selectedCategories.isEmpty()){
-                movie.setVisible(false);
+                moviePanel.remove(movie);
+                //movie.setVisible(false);
                 for (JCheckBox cb : selectedCategories) {
-                    if (film.getCategorie() == cb.getText() && (searchBar.getText().isEmpty() || film.getNom().toLowerCase().replace(" ","").contains(searchBar.getText().toLowerCase().replace(" ","")))){
-                        movie.setVisible(true);
+                    if (film.getCategorie().equalsIgnoreCase(cb.getText()) && (searchBar.getText().isEmpty() || film.getNom().toLowerCase().replace(" ","").contains(searchBar.getText().toLowerCase().replace(" ","")))){
+                        moviePanel.add(movie);
+                        //movie.setVisible(true);
                     }
                 }
             }
         }
+        moviePanel.repaint();
+        moviePanel.revalidate();
+    }
+
+    @Override
+    public void metAJour() {
+        
+        // Mise a jour du catalogue
+        movies.clear();
+        moviePanel.removeAll();
+        ArrayList<Film> catalogue = model.getCatalogue();
+        for(Film film : catalogue){
+            MovieTile tile = new MovieTile(film, "/res/Images/"+film.getNom().replace('é','e').toLowerCase().replace(" ","").replace(":","")+".jpg", mainFrame);
+            movies.add(tile);
+            moviePanel.add(tile);
+        }
+
+        // Mise à jour des categories
+        categoriesCB.clear();
+        categoryPanel.removeAll();
+        ArrayList<String> categories = model.getCategories();
+        for (String categorie : categories){
+            JCheckBox cb = new JCheckBox(categorie);
+            cb.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    updateSearch();
+                }
+            });
+            cb.setMargin(new Insets(0,0,0,35));
+            categoriesCB.add(cb);
+            categoryPanel.add(cb);
+        }
+
     }
 }

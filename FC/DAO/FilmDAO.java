@@ -3,6 +3,7 @@ package FC.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import FC.POJO.DemandeAjout;
 import FC.POJO.Film;
@@ -84,6 +85,90 @@ public class FilmDAO extends DAO<Film>{
             e.printStackTrace();
         }
         return b;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public ArrayList<Film> getFilms(){
+        ArrayList<Film> films = new ArrayList<>();
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from films");
+            while(res.next()){
+                films.add(new Film(res.getString("nomFilm"), 
+                res.getString("categories"), 
+                res.getString("synopsis"), 
+                res.getString("synopsis"), 
+                res.getString("acteurs").split(",")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        return films;
+    }
+
+    public ArrayList<String> getCategories(){
+        ArrayList<String> categories = new ArrayList<>();
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select distinct categories from films");
+            while(res.next()){
+                categories.add(res.getString("categories"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        return categories;
     }
     
 }
