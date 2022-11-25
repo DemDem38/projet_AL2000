@@ -3,6 +3,7 @@ package FC.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import FC.POJO.BluRay;
 import FC.POJO.Location;
@@ -16,25 +17,10 @@ public class SupportDAO extends DAO<Support>{
     }
 
     @Override
-    public boolean create(Support obj) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean delete(Support support) {
+    public boolean create(Support support) {
         boolean b = false;
-        // On supprime les locations qui referencent le support
-        DAO<Location> locationDAO = DAOFactory.getLocationDAO();
-        Location[] locations = ((LocationDAO) locationDAO).readListe(support.getID());
-        for (Location location : locations) {
-            if (location != null) {
-                locationDAO.delete(location);
-            }
-        }
-
         try {
-            b = this.connect.createStatement().execute("delete from supports where supportID = " + support.getID());
+            b = this.connect.createStatement().execute("insert into supports(filmID, typeSup) values("+support.toSQL()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -42,29 +28,67 @@ public class SupportDAO extends DAO<Support>{
     }
 
     @Override
-    public Support read(Object obj) {
-        // TODO Auto-generated method stub
+    public boolean delete(Support support) {
+        boolean b = false;
+        // On supprime les locations qui referencent le support
+        DAO<Location> locationDAO = DAOFactory.getLocationDAO();
+        ArrayList<Location> locations = ((LocationDAO) locationDAO).readListe(support.getSupportID());
+        for (Location location : locations) {
+            if (location != null) {
+                locationDAO.delete(location);
+            }
+        }
+        try {
+            b = this.connect.createStatement().execute("delete from supports where supportID = " + support.getSupportID());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    @Override
+    public Support read(int id) {
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from supports where supportID = " + id + "");
+            res.next();
+            if (res.getString("typeSup") == "QRCode") {
+                return new QR(res.getInt("supportID"));
+            } else {
+                return new BluRay(res.getInt("supportID"), res.getInt("filmID"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
         return null;
     }
 
     @Override
-    public boolean update(Support obj) {
-        // TODO Auto-generated method stub
-        return false;
+    public boolean update(Support support) {
+        boolean b = false;
+        try {
+            String typeSup;
+            if (support instanceof QR) {
+                typeSup = "QRCode";
+            } else {
+                typeSup = "BluRay";
+            }
+            b = this.connect.createStatement().execute("UPDATE supports set filmID = " + support.getFilmID() + " and typeSup = '" + typeSup + "' WHERE supportID = " + support.getSupportID());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return b;
     }
 
-    public Support[] readListe(String nomFilm) {
-        Support[] liste = new Support[1000];    // TODO : ArrayList
+    public ArrayList<Support> readListe(int filmID) {
+        ArrayList<Support> liste = new ArrayList<>();
         try {
-            ResultSet res = this.connect.createStatement().executeQuery("select * from supports where nomFilm = '" + nomFilm + "'");
-            int i = 0;
+            ResultSet res = this.connect.createStatement().executeQuery("select * from supports where filmID = " + filmID);
             while(res.next()){
                 if (res.getString("typeSup") == "QRCode") {
-                    liste[i] = new QR(res.getInt("SupportID"));
+                    liste.add(new QR(res.getInt("SupportID")));
                 } else {
-                    liste[i] = new BluRay(res.getInt("SupportID"), res.getString("nomFilm"));
+                    liste.add(new BluRay(res.getInt("SupportID"), res.getInt("filmID")));
                 }
-                i++;
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import FC.POJO.DemandeAjout;
 import FC.POJO.Film;
@@ -18,10 +19,9 @@ public class FilmDAO extends DAO<Film>{
 
     @Override
     public boolean create(Film film) {
-        //ne pas oublier : si on créer un film, on créer un support QR code direct
         boolean b = false;
         try {
-            b = this.connect.createStatement().execute("insert into films values("+film.toSQL()+")");
+            b = this.connect.createStatement().execute("insert into films(nomFilm, categories, realisateur, synopsis, acteurs) values("+film.toSQL()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -29,16 +29,16 @@ public class FilmDAO extends DAO<Film>{
     }
 
     @Override
-    public Film read(Object obj) {
-        String nomFilm = (String) obj;
+    public Film read(int id) {
         try {
-            ResultSet res = this.connect.createStatement().executeQuery("select * from films where nomFilm = '" + nomFilm + "'");
+            ResultSet res = this.connect.createStatement().executeQuery("select * from films where filmID = " + id);
             res.next();
-            return new Film(res.getString("nomFilm"), 
+            return new Film(res.getInt("filmID"),
+            res.getString("nomFilm"), 
             res.getString("categories"), 
             res.getString("synopsis"), 
             res.getString("synopsis"), 
-            res.getString("acteurs").split(","));
+            new ArrayList<String>(Arrays.asList(res.getString("acteurs").split(","))));
         } catch (SQLException e) {
             e.printStackTrace();
         };
@@ -49,7 +49,7 @@ public class FilmDAO extends DAO<Film>{
     public boolean update(Film film) {
         boolean b = false;
         try {
-            b = this.connect.createStatement().execute("UPDATE films set categorie =  '" + film.getCategorie() + "', realisateur = '" + film.getRealisateur() + "', synopsis = '" + film.getSynopsis() + "', acteurs = '" + String.join(",", film.getActeurs()) + "' WHERE nomFilm = '" + film.getNom() + "'");
+            b = this.connect.createStatement().execute("UPDATE films set categorie =  '" + film.getCategorie() + "', realisateur = '" + film.getRealisateur() + "', synopsis = '" + film.getSynopsis() + "', acteurs = '" + String.join(",", film.getActeurs()) + "' where filmID = " + film.getFilmID());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class FilmDAO extends DAO<Film>{
         boolean b = false;
         // On supprime les demandes d'ajout qui référencent le film
         DAO<DemandeAjout> demandeAjoutDAO = DAOFactory.getDemandeAjoutDAO();
-        DemandeAjout[] listeDemandes = ((DemandeAjoutDAO) demandeAjoutDAO).readListe(film.getNom());
+        ArrayList<DemandeAjout> listeDemandes = ((DemandeAjoutDAO) demandeAjoutDAO).readListe(film.getFilmID());
         if (listeDemandes != null) {
             for (DemandeAjout demande : listeDemandes) {
                 if (demande != null) {
@@ -72,7 +72,7 @@ public class FilmDAO extends DAO<Film>{
 
         // On supprime les supports qui référencent le film
         DAO<Support> supportDAO = DAOFactory.getSupportDAO();
-        Support[] supports = ((SupportDAO) supportDAO).readListe(film.getNom());
+        ArrayList<Support> supports = ((SupportDAO) supportDAO).readListe(film.getFilmID());
         for (Support support : supports) {
             if (support != null) {
                 supportDAO.delete(support);
@@ -80,77 +80,24 @@ public class FilmDAO extends DAO<Film>{
         }
         
         try {
-            b = this.connect.createStatement().execute("delete from films where nomFilm = '" + film.getNom()+"'");
+            b = this.connect.createStatement().execute("delete from films where filmID = " + film.getFilmID());
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return b;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public ArrayList<Film> getFilms(){
         ArrayList<Film> films = new ArrayList<>();
         try {
             ResultSet res = this.connect.createStatement().executeQuery("select * from films");
             while(res.next()){
-                films.add(new Film(res.getString("nomFilm"), 
+                films.add(new Film(res.getInt("filmID"), 
+                res.getString("nomFilm"), 
                 res.getString("categories"), 
                 res.getString("synopsis"), 
-                res.getString("synopsis"), 
-                res.getString("acteurs").split(",")));
+                res.getString("realisateur"), 
+                new ArrayList<String>(Arrays.asList(res.getString("acteurs").split(",")))));
             }
         } catch (SQLException e) {
             e.printStackTrace();

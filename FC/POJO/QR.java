@@ -5,7 +5,12 @@ public class QR extends Support{
     protected Date dateExpiration;
 
     public QR(int id) {
-        this.ID = id;
+        this.supportID = id;
+    }
+
+    @Override
+    public String toSQL() {
+        return super.toSQL() + "QRCode";
     }
     
 }

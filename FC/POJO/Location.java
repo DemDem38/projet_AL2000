@@ -1,29 +1,44 @@
 package FC.POJO;
-import java.sql.Date;
+
+import java.sql.Timestamp;
 
 public class Location {
-    protected Date dateDebut,dateFin;
-    protected int supportID, abonneID;
+    protected Timestamp dateDebut,dateFin;
+    protected int supportID, abonneID, locationID;
     Etat etat;
 
-    public Location(int supportID, int abonneID) {
+    public Location(int locationID, int supportID, Timestamp dd, Timestamp df, int abonneID, String etat) {
+        this.locationID = locationID;
         this.supportID = supportID;
+        dateDebut = dd;
+        dateFin = df;
         this.abonneID = abonneID;
+        switch(etat) {
+            case "enCours":
+                this.etat = Etat.enCours;
+            break;
+            case "Inspection":
+                this.etat = Etat.Inspection;
+            break;
+            case "Termine":
+                this.etat = Etat.Termine;
+            break;
+        }
     }
 
-    public Date getDateDebut() {
+    public Timestamp getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(Timestamp dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public Timestamp getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(Timestamp dateFin) {
         this.dateFin = dateFin;
     }
 
@@ -49,5 +64,23 @@ public class Location {
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }  
+    
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+
+    public String toSQL() {
+        return supportID + "," + dateDebut + "," + dateFin + "," + abonneID + "," + etat;
+    }
+
+    @Override
+    public String toString() {
+        return "Location [dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", supportID=" + supportID + ", abonneID="
+                + abonneID + ", locationID=" + locationID + ", etat=" + etat + "]";
     }
 }

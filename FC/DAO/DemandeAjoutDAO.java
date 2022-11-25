@@ -3,6 +3,7 @@ package FC.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import FC.POJO.DemandeAjout;
 
@@ -12,45 +13,51 @@ public class DemandeAjoutDAO extends DAO<DemandeAjout>{
         super(conn);
         //TODO Auto-generated constructor stub
     }
-
     @Override
-    public boolean create(DemandeAjout obj) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public DemandeAjout read(Object obj) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public boolean update(DemandeAjout obj) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean delete(DemandeAjout obj) {
+    public boolean create(DemandeAjout dAjout) {
         boolean b = false;
         try {
-            b = this.connect.createStatement().execute("delete from DemandesAjouts where abonneID = "+ obj.getAbonneID() + " and  nomFilm = '" + obj.getNomFilm() + "'");
+            b = this.connect.createStatement().execute("insert into demandesAjouts(abonneID, filmID) values("+dAjout.toSQL()+")");
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return b;
     }
 
-    public DemandeAjout[] readListe(String nomFilm) {
-        DemandeAjout[] liste = new DemandeAjout[1000];
+    @Override
+    public DemandeAjout read(int id) {
         try {
-            ResultSet res = this.connect.createStatement().executeQuery("select * from demandesajouts where nomFilm = '" + nomFilm + "'");
-            int i = 0;
+            ResultSet res = this.connect.createStatement().executeQuery("select * from demandesAjouts where demandeAjoutID = " + id);
+            res.next();
+            return new DemandeAjout(res.getInt("demandeAjoutID"), res.getInt("abonneID"), res.getInt("filmID"));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        return null;
+    }
+
+    @Override
+    public boolean update(DemandeAjout dAjout) {
+        return false; // ne sert à rien
+    }
+
+    @Override
+    public boolean delete(DemandeAjout dAjout) {
+        boolean b = false;
+        try {
+            b = this.connect.createStatement().execute("delete from DemandesAjouts where demandeAjoutID = " + dAjout.getDemandeAjoutID());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return b;
+    }
+
+    public ArrayList<DemandeAjout> readListe(int filmID) {
+        ArrayList<DemandeAjout> liste = new ArrayList<DemandeAjout>();
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from demandesajouts where filmID = " + filmID);
             while(res.next()){
-                liste[i] = new DemandeAjout(res.getInt("abonneID"),
-                res.getString("nomFilm"));
-                i++;
+                liste.add(new DemandeAjout(res.getInt("demandeAjoutID"), res.getInt("abonneID"), res.getInt("filmID")));
             }
         } catch (SQLException e) {
             e.printStackTrace();

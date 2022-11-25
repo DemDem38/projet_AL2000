@@ -1,17 +1,26 @@
 package FC.POJO;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Film {
+    protected int filmID;
     protected String nom,categorie,synopsis,realisateur;
-    protected String[] acteurs;
+    protected ArrayList<String> acteurs;
 
-    public Film(String n, String c, String s, String r, String[] a) {
+    public Film(int id, String n, String c, String s, String r, ArrayList<String> a) {
+        filmID = id;
         nom = n;
         categorie = c;
         synopsis = s;
         realisateur = r;
         acteurs = a;
+    }
+    public int getFilmID() {
+        return filmID;
+    }
+    public void setFilmID(int id) {
+        filmID = id;
     }
 
     public String getNom() {
@@ -46,11 +55,11 @@ public class Film {
         this.realisateur = realisateur;
     }
 
-    public String[] getActeurs() {
+    public ArrayList<String> getActeurs() {
         return acteurs;
     }
 
-    public void setActeurs(String[] acteurs) {
+    public void setActeurs(ArrayList<String> acteurs) {
         this.acteurs = acteurs;
     }
 
@@ -66,9 +75,7 @@ public class Film {
         ", \ncategorie = " + categorie 
         + ", \nsynopsis = " + synopsis 
         + ", \nrealisateur = " + realisateur 
-        + ", \nacteurs = " + Arrays.toString(acteurs)
+        + ", \nacteurs = " + acteurs.toString()
         + "\n\n";
     }
-    
-    
 }

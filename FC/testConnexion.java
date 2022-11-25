@@ -3,13 +3,18 @@ package FC;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import FC.DAO.DAO;
+import FC.DAO.DAOFactory;
 import FC.DAO.DBConnexion;
 import FC.DAO.FilmDAO;
 import FC.POJO.Abonne;
 import FC.POJO.BluRay;
 import FC.POJO.Film;
+import FC.POJO.Location;
+import FC.POJO.Support;
 
 public class testConnexion {
 
@@ -42,15 +47,36 @@ public class testConnexion {
             }
             //test read et delete
             DAO<Film> filmDAO = new FilmDAO(connexion);
-            Film film = filmDAO.read("Avatar");
+            Film film = filmDAO.read(1);
             System.out.println(film);
 
             filmDAO.delete(film);
 
-            ResultSet resultat = statement.executeQuery("select * from films where nomFilm = 'Avatar'");
+            ResultSet resultat = statement.executeQuery("select * from films where filmID = 1");
             while(resultat.next()) { // récupération des résultats
-                System.out.println( new Film (resultat.getString("nomFilm"), resultat.getString("categories"), resultat.getString("synopsis"), resultat.getString("synopsis"), resultat.getString("acteurs").split(",")));
+                System.out.println(new Film 
+                (resultat.getInt("filmID"), 
+                resultat.getString("nomFilm"), 
+                resultat.getString("categories"), 
+                resultat.getString("synopsis"), 
+                resultat.getString("realisateur"), 
+                new ArrayList<String>(Arrays.asList(resultat.getString("acteurs").split(",")))));
             }
+            /*DAO<Location> lDao = DAOFactory.getLocationDAO();
+            Location l = lDao.read(1);
+            System.out.println(l);
+
+            DAO<Support> sDao = DAOFactory.getSupportDAO();
+            Support s = sDao.read(1);
+            System.out.println(s);
+
+            sDao.delete(s);
+            s = sDao.read(1);
+            System.out.println(s);
+
+            l = lDao.read(1);
+            System.out.println(l);*/
+
             /*ResultSet resultat = statement.executeQuery("select * from films");
             while(resultat.next()) { // récupération des résultats
                 Film f = new Film(resultat.getString("nomFilm")+ resultat.getString("categories")+ resultat.getString("synopsis"), resultat.getString("synopsis"), resultat.getString("acteurs").split(","));
