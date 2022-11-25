@@ -24,6 +24,8 @@ public class AL2000 extends Observable {
     Connection connexion;
     ArrayList<Film> catalogue;
     ArrayList<String> categories;
+    String lastUpdate;
+    Film currentFilm;
 
     public AL2000() {
         connexion = DBConnexion.instance();
@@ -42,6 +44,8 @@ public class AL2000 extends Observable {
 
     public void updateCatalogue(){
         catalogue = filmDAO.getFilms();
+        categories = filmDAO.getCategories();
+        lastUpdate = "catalogue";
         miseAJour();
     }
 
@@ -49,16 +53,22 @@ public class AL2000 extends Observable {
         return catalogue;
     }
 
-    public void updateCategories(){
-        categories = filmDAO.getCategories();
-        miseAJour();
-    }
-
     public ArrayList<String> getCategories() {
         return categories;
     }
 
+    public Film getCurrentFilm() {
+        return currentFilm;
+    }
 
+    public void setCurrentFilm(Film currentFilm) {
+        this.currentFilm = currentFilm;
+        lastUpdate = "currentFilm";
+        miseAJour();
+    }
 
+    public String getLastUpdate(){
+        return this.lastUpdate;
+    }
 
 }

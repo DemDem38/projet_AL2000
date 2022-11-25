@@ -1,5 +1,6 @@
 package UI;
 
+import FC.AL2000;
 import FC.POJO.Film;
 
 import javax.imageio.ImageIO;
@@ -14,13 +15,13 @@ public class MovieTile extends JLabel {
 
     private Film film;
 
-    MovieTile(Film film, String ImgPath, MainFrame mainFrame){
+    MovieTile(Film f, MainFrame mainFrame, AL2000 model){
 
-        this.film = film;
+        this.film = f;
 
         try {
             BufferedImage img;
-            img = ImageIO.read(getClass().getResource(ImgPath));
+            img = ImageIO.read(getClass().getResource("/res/Images/"+film.getNom().replace('é','e').toLowerCase().replace(" ","").replace(":","")+".jpg"));
             setIcon(new ImageIcon(img.getScaledInstance(175, 250, Image.SCALE_FAST)));
         } catch (IOException e) {
             e.printStackTrace();
@@ -30,6 +31,7 @@ public class MovieTile extends JLabel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 // TODO afficher le bon film avec supportID
+                model.setCurrentFilm(film);
                 mainFrame.changeCard("movieUI");
             }
         });

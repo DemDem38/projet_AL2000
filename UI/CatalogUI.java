@@ -35,6 +35,7 @@ public class CatalogUI extends JPanel implements Observateur {
         model.ajouteObservateur(this);
         controller = c;
         movies = new ArrayList<>();
+        this.mainFrame = mainFrame;
         categoriesCB = new ArrayList<>();
 
         // Top panel
@@ -139,33 +140,33 @@ public class CatalogUI extends JPanel implements Observateur {
 
     @Override
     public void metAJour() {
-        
-        // Mise a jour du catalogue
-        movies.clear();
-        moviePanel.removeAll();
-        ArrayList<Film> catalogue = model.getCatalogue();
-        for(Film film : catalogue){
-            MovieTile tile = new MovieTile(film, "/res/Images/"+film.getNom().replace('é','e').toLowerCase().replace(" ","").replace(":","")+".jpg", mainFrame);
-            movies.add(tile);
-            moviePanel.add(tile);
-        }
+        if(model.getLastUpdate().equals("catalogue")){
+            // Mise a jour du catalogue
+            movies.clear();
+            moviePanel.removeAll();
+            ArrayList<Film> catalogue = model.getCatalogue();
+            for(Film film : catalogue){
+                MovieTile tile = new MovieTile(film, mainFrame, model);
+                movies.add(tile);
+                moviePanel.add(tile);
+            }
 
-        // Mise à jour des categories
-        categoriesCB.clear();
-        categoryPanel.removeAll();
-        ArrayList<String> categories = model.getCategories();
-        for (String categorie : categories){
-            JCheckBox cb = new JCheckBox(categorie);
-            cb.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    updateSearch();
-                }
-            });
-            cb.setMargin(new Insets(0,0,0,35));
-            categoriesCB.add(cb);
-            categoryPanel.add(cb);
+            // Mise à jour des categories
+            categoriesCB.clear();
+            categoryPanel.removeAll();
+            ArrayList<String> categories = model.getCategories();
+            for (String categorie : categories){
+                JCheckBox cb = new JCheckBox(categorie);
+                cb.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        updateSearch();
+                    }
+                });
+                cb.setMargin(new Insets(0,0,0,35));
+                categoriesCB.add(cb);
+                categoryPanel.add(cb);
+            }
         }
-
     }
 }

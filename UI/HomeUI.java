@@ -40,7 +40,6 @@ public class HomeUI extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.updateCatalogue();
-                model.updateCategories();
                 mainFrame.changeCard("catalogUI");
             }
         });
