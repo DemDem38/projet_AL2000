@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
@@ -24,7 +23,7 @@ public class LocationDAO extends DAO<Location> {
     public boolean create(Location location) {
         boolean b = false;
         try {
-            location.setDateDebut(new Timestamp(System.currentTimeMillis()));
+            location.setDateDebut(sdf.format(new Date(System.currentTimeMillis())));
             location.setDateFin(null);
             location.setEtat(Etat.enCours);
             b = this.connect.createStatement().execute("insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values("+location.toSQL()+")");
@@ -42,12 +41,12 @@ public class LocationDAO extends DAO<Location> {
             return new Location(
                 res.getInt("locationID"), 
                 res.getInt("supportID"), 
-                res.getTimestamp("dateDebut"), 
-                res.getTimestamp("dateFin"), 
+                res.getString("dateDebut"), 
+                res.getString("dateFin"), 
                 res.getInt("abonneID"), 
                 res.getString("etat"));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("La location n'est plus dans la BDD");
         };
         return null;
     }
@@ -57,7 +56,7 @@ public class LocationDAO extends DAO<Location> {
         boolean b = false;
         // TODO : vérifier format dateFin
         try {
-            b = this.connect.createStatement().execute("update locations set dateFin = timestamp '" + location.getDateFin() +"' and etat = '" + location.getEtat() + "' where locationID = " + location.getLocationID());
+            b = this.connect.createStatement().execute("update locations set dateFin = '" + location.getDateFin() +"', etat = '" + location.getEtat() + "' where locationID = " + location.getLocationID());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -75,7 +74,7 @@ public class LocationDAO extends DAO<Location> {
         return b;
     }
     
-    public ArrayList<Location> readListe(int supportID) {
+    public ArrayList<Location> readListeFromSupport(int supportID) {
         ArrayList<Location> liste = new ArrayList<>();
         try {
             ResultSet res = this.connect.createStatement().executeQuery("select * from locations where supportID = " + supportID);
@@ -83,8 +82,27 @@ public class LocationDAO extends DAO<Location> {
                 liste.add(new Location(
                     res.getInt("locationID"), 
                     res.getInt("supportID"), 
-                    res.getTimestamp("dateDebut"), 
-                    res.getTimestamp("dateFin"), 
+                    res.getString("dateDebut"), 
+                    res.getString("dateFin"), 
+                    res.getInt("abonneID"), 
+                    res.getString("etat")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        };
+        return liste;
+    }
+
+    public ArrayList<Location> readListeFromAbonne(int abonneID) {
+        ArrayList<Location> liste = new ArrayList<>();
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from locations where abonneID = " + abonneID);
+            while(res.next()){
+                liste.add(new Location(
+                    res.getInt("locationID"), 
+                    res.getInt("supportID"), 
+                    res.getString("dateDebut"), 
+                    res.getString("dateFin"), 
                     res.getInt("abonneID"), 
                     res.getString("etat")));
             }

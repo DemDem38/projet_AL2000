@@ -1,13 +1,11 @@
 package FC.POJO;
 
-import java.sql.Timestamp;
-
 public class Location {
-    protected Timestamp dateDebut,dateFin;
+    protected String dateDebut,dateFin;
     protected int supportID, abonneID, locationID;
     Etat etat;
 
-    public Location(int locationID, int supportID, Timestamp dd, Timestamp df, int abonneID, String etat) {
+    public Location(int locationID, int supportID, String dd, String df, int abonneID, String etat) {
         this.locationID = locationID;
         this.supportID = supportID;
         dateDebut = dd;
@@ -26,19 +24,24 @@ public class Location {
         }
     }
 
-    public Timestamp getDateDebut() {
+    public Location(int supportID, int abonneID) {
+        this.supportID = supportID;
+        this.abonneID = abonneID;
+    }
+
+    public String getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Timestamp dateDebut) {
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Timestamp getDateFin() {
+    public String getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Timestamp dateFin) {
+    public void setDateFin(String dateFin) {
         this.dateFin = dateFin;
     }
 
@@ -75,12 +78,17 @@ public class Location {
     }
 
     public String toSQL() {
-        return supportID + "," + dateDebut + "," + dateFin + "," + abonneID + "," + etat;
+        return supportID + ",'" + dateDebut + "','" + dateFin + "'," + abonneID + ",'" + etat + "'";
     }
 
     @Override
     public String toString() {
-        return "Location [dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", supportID=" + supportID + ", abonneID="
-                + abonneID + ", locationID=" + locationID + ", etat=" + etat + "]";
+        return "locationID = " + locationID + 
+        ", \nsupportID = " + supportID 
+        + ", \ndateDebut = " + dateDebut 
+        + ", \ndateFin = " + dateFin 
+        + ", \nabonneID = " + abonneID
+        + ", \netat = " + etat
+        + "\n\n";
     }
 }

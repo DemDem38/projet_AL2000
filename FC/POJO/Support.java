@@ -12,9 +12,8 @@ public abstract class Support {
     public void setFilmID(int filmID) {
         this.filmID = filmID;
     }
-    public String toSQL() {
-        return filmID + ",";
-    }
+    public abstract String toSQL();
+
     public int getSupportID() {
         return supportID;
     }

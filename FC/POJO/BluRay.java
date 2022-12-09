@@ -6,9 +6,13 @@ public class BluRay extends Support{
         this.filmID = filmID;
     }
 
+    public BluRay(int filmID) {
+        this.filmID = filmID;
+    }
+
     @Override
     public String toSQL() {
-        return super.toSQL() + "BluRay";
+        return filmID + ", 'BluRay'," + null;
     }
 
     @Override

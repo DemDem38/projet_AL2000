@@ -15,32 +15,32 @@ insert into films(nomFilm, categories, realisateur, synopsis, acteurs) values('L
 insert into films(nomFilm, categories, realisateur, synopsis, acteurs) values('Parasite', 'Comédie', 'David Yates', 'La famille Kim, pauvre et au chômage, vit d expédients dans un taudis en sous-sol. Un jour, le fils réussit, au moyen d un faux diplôme, à se faire embaucher pour donner des cours d anglais à la fille d une famille richissime. C’est le début d une succession d événements qui vont rapprocher les deux familles.', 'Song Kang-ho,Lee Sun-kyun,Cho Yeo-jeong,Jang Hye-jin,Choi Woo-shik,Park So-dam');
 insert into films(nomFilm, categories, realisateur, synopsis, acteurs) values('Alice in borderlands', 'Action', 'Ridley Scott', 'Arisu, jeune homme apathique, sans emploi et obsédé par les jeux vidéo, se retrouve soudainement dans une étrange version vidée de Tokyo dans laquelle lui et ses amis doivent participer à des jeux dangereux pour survivre. Dans ce monde étrange, Arisu rencontre Usagi, une jeune femme seule enchainant les jeux. Ensemble, ils entreprennent de percer de nombreux mystères tout en risquant leur vie et en apprenant la signification de ce que c est de vivre.', 'Kento Yamazaki,Tao Tsuchiya');
 
--- INSERT 15 SUPPORTS 10 blu-ray 5 qrcode
-insert into supports(filmID, typeSup) values(1, 'BluRay');
-insert into supports(filmID, typeSup) values(6, 'BluRay');
-insert into supports(filmID, typeSup) values(4, 'BluRay');
-insert into supports(filmID, typeSup) values(5, 'BluRay');
-insert into supports(filmID, typeSup) values(3, 'BluRay');
-insert into supports(filmID, typeSup) values(12, 'BluRay');
-insert into supports(filmID, typeSup) values(11, 'BluRay');
-insert into supports(filmID, typeSup) values(1, 'BluRay');
-insert into supports(filmID, typeSup) values(3, 'BluRay');
-insert into supports(filmID, typeSup) values(1, 'BluRay');
-insert into supports(filmID, typeSup) values(1, 'QRCode');
-insert into supports(filmID, typeSup) values(2, 'QRCode');
-insert into supports(filmID, typeSup) values(3, 'QRCode');
-insert into supports(filmID, typeSup) values(4, 'QRCode');
-insert into supports(filmID, typeSup) values(5, 'QRCode');
-insert into supports(filmID, typeSup) values(6, 'QRCode');
-insert into supports(filmID, typeSup) values(7, 'QRCode');
-insert into supports(filmID, typeSup) values(8, 'QRCode');
-insert into supports(filmID, typeSup) values(9, 'QRCode');
-insert into supports(filmID, typeSup) values(10, 'QRCode');
-insert into supports(filmID, typeSup) values(11, 'QRCode');
-insert into supports(filmID, typeSup) values(12, 'QRCode');
-insert into supports(filmID, typeSup) values(13, 'QRCode');
-insert into supports(filmID, typeSup) values(14, 'QRCode');
-insert into supports(filmID, typeSup) values(15, 'QRCode');
+-- INSERT 25 SUPPORTS
+insert into supports(filmID, typeSup, dateExpiration) values(1, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(6, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(4, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(5, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(3, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(12, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(11, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(1, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(3, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(1, 'BluRay', null);
+insert into supports(filmID, typeSup, dateExpiration) values(1, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(2, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(3, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(4, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(5, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(6, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(7, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(8, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(9, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(10, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(11, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(12, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(13, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(14, 'QRCode', '2022-08-11 04:15:29');
+insert into supports(filmID, typeSup, dateExpiration) values(15, 'QRCode', '2022-08-11 04:15:29');
 
 -- INSERT 10 ABONNES
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Bialiatski', 'Alès', 'ales@etu.univ-grenoble-alpes.fr', '39 RTE DE TURIN', '0435876371', null, 100, 417945231);
@@ -55,21 +55,21 @@ insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde,
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Gbowee', 'Leymah', 'leymahGBOWEE@orange.fr', '22 LE BOURG', '0122604183', 'Comédie,Romance', 100, 915049999);
 
 -- INSERT 15 LOCATIONS
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(1, timestamp '2022-08-11 04:15:29', timestamp '2022-08-14 18:25:24', 1, 'inspection');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(3, timestamp '2022-10-13 16:35:28', null, 1, 'en cours');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(4, timestamp '2022-09-15 23:22:34', timestamp '2022-10-12 14:44:14', 1, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(2, timestamp '2022-08-18 20:46:58', timestamp '2022-08-19 21:22:23', 2, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(6, timestamp '2022-07-20 19:58:09', null, 3, 'en cours');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(7, timestamp '2022-10-27 05:49:23', timestamp '2022-10-29 12:22:46', 4, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(8, timestamp '2022-07-29 04:22:23', null, 5, 'en cours');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(9, timestamp '2022-10-03 02:34:23', timestamp '2022-10-12 23:22:57', 6, 'inspection');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(10, timestamp '2022-10-09 09:20:08', timestamp '2022-10-12 21:22:08', 6, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(5, timestamp '2022-10-09 21:22:23', timestamp '2022-10-12 21:58:09', 7, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(11, timestamp '2022-05-12 9:33:18', timestamp '2022-05-12 21:33:18', 3, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(12, timestamp '2022-10-12 7:22:02', timestamp '2022-10-12 19:22:02', null, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(14, timestamp '2022-08-12 4:45:23', timestamp '2022-08-12 16:45:23', 7, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(13, timestamp '2022-10-12 21:22:23', timestamp '2022-10-13 9:22:23', null, 'termine');
-insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(15, timestamp '2022-10-14 16:22:44', timestamp '2022-10-15 4:22:44', null, 'termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(1, '2022-08-11 04:15:29', '2022-08-14 18:25:24', 1, 'Inspection');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(3, '2022-10-13 16:35:28', null, 1, 'enCours');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(4, '2022-09-15 23:22:34', '2022-10-12 14:44:14', 1, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(2, '2022-08-18 20:46:58', '2022-08-19 21:22:23', 2, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(6, '2022-07-20 19:58:09', null, 3, 'enCours');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(7, '2022-10-27 05:49:23', '2022-10-29 12:22:46', 4, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(8, '2022-07-29 04:22:23', null, 5, 'enCours');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(9, '2022-10-03 02:34:23', '2022-10-12 23:22:57', 6, 'Inspection');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(10, '2022-10-09 09:20:08', '2022-10-12 21:22:08', 6, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(5, '2022-10-09 21:22:23', '2022-10-12 21:58:09', 7, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(11, '2022-05-12 9:33:18', '2022-05-12 21:33:18', 3, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(12, '2022-10-12 7:22:02', '2022-10-12 19:22:02', null, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(14, '2022-08-12 4:45:23', '2022-08-12 16:45:23', 7, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(13, '2022-10-12 21:22:23', '2022-10-13 9:22:23', null, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(15, '2022-10-14 16:22:44', '2022-10-15 4:22:44', null, 'Termine');
 
 -- INSERT 10 DEMANDESAJOUTS
 insert into demandesAjouts(abonneID, filmID) values(1, 13);

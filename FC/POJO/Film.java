@@ -16,6 +16,15 @@ public class Film {
         realisateur = r;
         acteurs = a;
     }
+
+    public Film(String n, String c, String s, String r, ArrayList<String> a) {
+        nom = n;
+        categorie = c;
+        synopsis = s;
+        realisateur = r;
+        acteurs = a;
+    }
+
     public int getFilmID() {
         return filmID;
     }
@@ -65,7 +74,7 @@ public class Film {
 
     public String toSQL(){
         String s ="";
-        s = nom + "," + categorie + "," + synopsis + "," + realisateur + "," + String.join(",", acteurs);
+        s = "'" + nom + "','" + categorie + "','" + realisateur + "','" + synopsis + "', '" + String.join(", ", acteurs) + "'";
         return s;
     }
 

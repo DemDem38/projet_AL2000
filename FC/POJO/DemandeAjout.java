@@ -8,6 +8,12 @@ public class DemandeAjout {
         this.abonneID = abonneID;
         this.filmID = filmID;
     }
+
+    public DemandeAjout(int abonneID, int filmID) {
+        this.abonneID = abonneID;
+        this.filmID = filmID;
+    }
+
     public int getDemandeAjoutID() {
         return demandeAjoutID;
     }
@@ -29,5 +35,10 @@ public class DemandeAjout {
 
     public String toSQL() {
         return abonneID + ", " + filmID;
+    }
+
+    @Override
+    public String toString() {
+        return "demandeAjoutID = " + demandeAjoutID + "\nabonneID = " + abonneID + ", \nfilmID = " + filmID;
     }
 }

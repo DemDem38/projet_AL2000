@@ -37,10 +37,10 @@ public class FilmDAO extends DAO<Film>{
             res.getString("nomFilm"), 
             res.getString("categories"), 
             res.getString("synopsis"), 
-            res.getString("synopsis"), 
+            res.getString("realisateur"), 
             new ArrayList<String>(Arrays.asList(res.getString("acteurs").split(","))));
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Le film n'est pas dans la BDD");
         };
         return null;
     }
@@ -49,7 +49,7 @@ public class FilmDAO extends DAO<Film>{
     public boolean update(Film film) {
         boolean b = false;
         try {
-            b = this.connect.createStatement().execute("UPDATE films set categorie =  '" + film.getCategorie() + "', realisateur = '" + film.getRealisateur() + "', synopsis = '" + film.getSynopsis() + "', acteurs = '" + String.join(",", film.getActeurs()) + "' where filmID = " + film.getFilmID());
+            b = this.connect.createStatement().execute("UPDATE films set nomFilm = '" + film.getNom() + "', categories =  '" + film.getCategorie() + "', realisateur = '" + film.getRealisateur() + "', synopsis = '" + film.getSynopsis() + "', acteurs = '" + String.join(",", film.getActeurs()) + "' where filmID = " + film.getFilmID());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class FilmDAO extends DAO<Film>{
         boolean b = false;
         // On supprime les demandes d'ajout qui référencent le film
         DAO<DemandeAjout> demandeAjoutDAO = DAOFactory.getDemandeAjoutDAO();
-        ArrayList<DemandeAjout> listeDemandes = ((DemandeAjoutDAO) demandeAjoutDAO).readListe(film.getFilmID());
+        ArrayList<DemandeAjout> listeDemandes = ((DemandeAjoutDAO) demandeAjoutDAO).readListeFromFilm(film.getFilmID());
         if (listeDemandes != null) {
             for (DemandeAjout demande : listeDemandes) {
                 if (demande != null) {

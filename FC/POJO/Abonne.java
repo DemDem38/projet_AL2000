@@ -22,7 +22,18 @@ public class Abonne {
         solde = s;
         restrictions = r;
     }
-     /*Methodes */
+
+    public Abonne(String n, String p, String e, String a, String t, ArrayList<String> r, int s, int mdp) {
+        nom = n;
+        prenom = p;
+        adresse = a;
+        email = e;
+        tel = t;
+        this.mdp = mdp;
+        solde = s;
+        restrictions = r;
+    }
+    /*Methodes */
      public void demanderFilm(Film film) {
         /* Permet de domander un film qui n'est pas dans le catalogue
          * Accès a la base de données pour vérifier que le film n'est pas présent
@@ -121,7 +132,8 @@ public class Abonne {
     
     public String toSQL(){
         String s ="";
-        s = nom + "," + prenom + "," + email + "," + adresse + "," + tel + "," + String.join(",", restrictions) + "," +  solde + "," + mdp;
+        s = "'" + nom + "','" + prenom + "','" + email + "','" + adresse + "','" + tel + "', '" + String.join(", ", restrictions) + "'," +  solde + "," + mdp;
+        System.out.println(s);
         return s;
     }
 

@@ -25,6 +25,7 @@ create table supports(
     supportID number GENERATED ALWAYS AS IDENTITY,
     filmID number(10),
     typeSup varchar(10),
+    dateExpiration varchar(100),
     constraint supports_C1 primary key (supportID),
     constraint supports_C2 foreign key (filmID) references films (filmID)
 );
@@ -32,8 +33,8 @@ create table supports(
 create table locations(
     locationID number GENERATED ALWAYS AS IDENTITY,
     supportID number(10),
-    dateDebut TIMESTAMP,
-    dateFin TIMESTAMP,
+    dateDebut varchar(100),
+    dateFin varchar(100),
     abonneID number(10),
     etat varchar(20),
     constraint locations_C1 primary key (locationID),

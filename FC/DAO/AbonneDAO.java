@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 import FC.POJO.Abonne;
+import FC.POJO.DemandeAjout;
 import FC.POJO.Location;
 
 public class AbonneDAO extends DAO<Abonne> {
@@ -32,18 +33,22 @@ public class AbonneDAO extends DAO<Abonne> {
         try {
             ResultSet res = this.connect.createStatement().executeQuery("select * from abonnes where abonneID = " + id);
             res.next();
+            ArrayList<String> al = new ArrayList<>();
+            if (res.getString("restrictions") != null) {
+                al = new ArrayList<String>(Arrays.asList(res.getString("restrictions").split(",")));
+            }
             return new Abonne(res.getInt("abonneID"),
             res.getString("nom"),
             res.getString("prenom"),
             res.getString("email"),
             res.getString("adresse"),
             res.getString("telephone"),
-            new ArrayList<String>(Arrays.asList(res.getString("restrictions").split(","))),
+            al,
             res.getInt("solde"),
             res.getInt("mdpHash")
             );
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("L'abonné n'est plus dans la BDD");
         };
         return null;
     }
@@ -53,7 +58,7 @@ public class AbonneDAO extends DAO<Abonne> {
         boolean b = false;
         // TODO : vérifier format dateFin
         try {
-            b = this.connect.createStatement().execute("update abonnes set nom = '" + abonne.getNom() +"' and prenom = '" + abonne.getPrenom() + "' and email = '" + abonne.getEmail() + "' and adresse = '" + abonne.getAdresse() + "' and telephone = '" + abonne.getTel() + "' and restrictions = '" + String.join(",", abonne.getRestrictions()) + "' and solde = " + abonne.getSolde() + " and mdpHash = " + abonne.getMdp());
+            b = this.connect.createStatement().execute("update abonnes set nom = '" + abonne.getNom() +"', prenom = '" + abonne.getPrenom() + "', email = '" + abonne.getEmail() + "', adresse = '" + abonne.getAdresse() + "', telephone = '" + abonne.getTel() + "', restrictions = '" + String.join(",", abonne.getRestrictions()) + "', solde = " + abonne.getSolde() + ", mdpHash = " + abonne.getMdp());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -64,12 +69,22 @@ public class AbonneDAO extends DAO<Abonne> {
     public boolean delete(Abonne abonne) {
         boolean b = false;
         DAO<Location> locationDAO = DAOFactory.getLocationDAO();
-        ArrayList<Location> locations = ((LocationDAO) locationDAO).readListe(abonne.getID());
+        DAO<DemandeAjout> demandeAjoutDAO = DAOFactory.getDemandeAjoutDAO();
+
+        ArrayList<Location> locations = ((LocationDAO) locationDAO).readListeFromAbonne(abonne.getID());
         for (Location location : locations) {
             if (location != null) {
                 locationDAO.delete(location);
             }
         }
+
+        ArrayList<DemandeAjout> demandeAjouts = ((DemandeAjoutDAO) demandeAjoutDAO).readListeFromAbonne(abonne.getID());
+        for (DemandeAjout demandeAjout : demandeAjouts) {
+            if (demandeAjout != null) {
+                demandeAjoutDAO.delete(demandeAjout);
+            }
+        }
+
         try {
             b = this.connect.createStatement().execute("delete from abonnes where abonneID = " + abonne.getID());
         } catch (SQLException e) {
