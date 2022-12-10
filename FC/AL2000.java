@@ -14,6 +14,7 @@ import FC.PATTERNS.Observable;
 import FC.POJO.Abonne;
 import FC.POJO.Film;
 import FC.POJO.Location;
+import FC.POJO.QR;
 import FC.POJO.Support;
 
 public class AL2000 extends Observable {
@@ -36,6 +37,7 @@ public class AL2000 extends Observable {
         supportDAO = (SupportDAO) DAOFactory.getSupportDAO();
         catalogue = new ArrayList<>();
         categories = new ArrayList<>();
+        abonneConnecte = null;
     }
 
     public void connexion(String email, int mdp) {
@@ -84,6 +86,28 @@ public class AL2000 extends Observable {
         this.currentFilm = currentFilm;
         lastUpdate = "currentFilm";
         miseAJour();
+    }
+
+    public boolean bluRayAvailable(){
+        Support bluRayAvailable = null;
+        if (isConnected()){
+            bluRayAvailable = supportDAO.getBluRayAvailable(currentFilm.getFilmID());
+        }
+        return bluRayAvailable != null;
+    }
+
+    public void createLocation(String type){
+        if(type=="QR"){
+            QR qr = new QR(currentFilm.getFilmID());
+            int key = supportDAO.createSupport(qr);
+            Location location = new Location(key, isConnected() ? abonneConnecte.getID():-1);
+            location.setDateFin(qr.getDateExpiration());
+            locationDAO.create(location);
+        }else{
+            Support bluRayAvailable = supportDAO.getBluRayAvailable(currentFilm.getFilmID());
+            Location location = new Location(bluRayAvailable.getSupportID(), isConnected() ? abonneConnecte.getID():-1);
+            locationDAO.create(location);
+        }
     }
 
     public String getLastUpdate(){

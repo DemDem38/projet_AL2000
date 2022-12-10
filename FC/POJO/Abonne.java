@@ -133,7 +133,6 @@ public class Abonne {
     public String toSQL(){
         String s ="";
         s = "'" + nom + "','" + prenom + "','" + email + "','" + adresse + "','" + tel + "', '" + String.join(", ", restrictions) + "'," +  solde + "," + mdp;
-        System.out.println(s);
         return s;
     }
 

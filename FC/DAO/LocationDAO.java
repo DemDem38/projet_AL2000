@@ -24,7 +24,6 @@ public class LocationDAO extends DAO<Location> {
         boolean b = false;
         try {
             location.setDateDebut(sdf.format(new Date(System.currentTimeMillis())));
-            location.setDateFin(null);
             location.setEtat(Etat.enCours);
             b = this.connect.createStatement().execute("insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values("+location.toSQL()+")");
         } catch (SQLException e) {
