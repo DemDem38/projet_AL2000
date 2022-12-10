@@ -35,9 +35,9 @@ public class TopPanel extends JPanel implements Observateur {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO vérifier si connecté
-                if (false){
-                    // TODO déconnecter
+                if (model.isConnected()){
+                    model.deconnexion();
+                    mainFrame.changeCard("homeUI");
                 }else{
                     mainFrame.changeCard("loginUI");
                 }
@@ -50,8 +50,7 @@ public class TopPanel extends JPanel implements Observateur {
         manageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO vérifier si connecté
-                if (false){
+                if (model.isConnected()){
                     mainFrame.changeCard("manageUI");
                 }else{
                     mainFrame.changeCard("signUpUI");
@@ -76,8 +75,7 @@ public class TopPanel extends JPanel implements Observateur {
 
     @Override
     public void metAJour() {
-        // TODO vérifier si connecté
-        if(false){
+        if(model.isConnected()){
             // TODO récupérer solde
             soldeLabel.setText("15€");
             loginButton.setText("Se déconnecter");

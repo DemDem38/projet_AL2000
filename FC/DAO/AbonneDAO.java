@@ -92,5 +92,30 @@ public class AbonneDAO extends DAO<Abonne> {
         }
         return b;
     }
+
+    public Abonne getAbonne(String email, int mdp) {
+        try {
+            System.out.println(email + mdp);
+            ResultSet res = this.connect.createStatement().executeQuery("select * from abonnes where email = '" + email + "' and mdpHash = " + mdp);
+            res.next();
+            ArrayList<String> al = new ArrayList<>();
+            if (res.getString("restrictions") != null) {
+                al = new ArrayList<String>(Arrays.asList(res.getString("restrictions").split(",")));
+            }
+            return new Abonne(res.getInt("abonneID"),
+            res.getString("nom"),
+            res.getString("prenom"),
+            res.getString("email"),
+            res.getString("adresse"),
+            res.getString("telephone"),
+            al,
+            res.getInt("solde"),
+            res.getInt("mdpHash")
+            );
+        } catch (SQLException e) {
+            System.out.println("Cet utilisateur n'existe pas");
+        }
+        return null;
+    }
     
 }

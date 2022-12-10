@@ -26,6 +26,7 @@ public class AL2000 extends Observable {
     ArrayList<String> categories;
     String lastUpdate;
     Film currentFilm;
+    Abonne abonneConnecte;
 
     public AL2000() {
         connexion = DBConnexion.instance();
@@ -37,10 +38,28 @@ public class AL2000 extends Observable {
         categories = new ArrayList<>();
     }
 
-    /*public Abonne Connexion(String email, int mdp) {
-        Abonne abonne;
-        return abonne;
-    }*/
+    public void connexion(String email, int mdp) {
+        Abonne abonne = abonneDAO.getAbonne(email, mdp);
+        this.abonneConnecte = abonne;
+        lastUpdate = "connexion";
+        miseAJour();
+    }
+
+    public void abonner(String nom, String prenom, String login, int password, String adresse, String telephone) {
+        Abonne abonne = new Abonne(nom, prenom, login, adresse, telephone, new ArrayList<>(), 0, password);
+        abonneDAO.create(abonne);
+        connexion(login, password);
+    }
+
+    public void deconnexion() {
+        abonneConnecte = null;
+        lastUpdate = "déconnexion";
+        miseAJour();
+    }
+
+    public boolean isConnected() {
+        return abonneConnecte != null;
+    }
 
     public void updateCatalogue(){
         catalogue = filmDAO.getFilms();
@@ -70,5 +89,7 @@ public class AL2000 extends Observable {
     public String getLastUpdate(){
         return this.lastUpdate;
     }
+
+    
 
 }

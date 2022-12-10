@@ -7,7 +7,7 @@ create table abonnes(
     telephone varchar(10),
     restrictions varchar(500),
     solde number(10),
-    mdpHash number(10),
+    mdpHash number(38),
     constraint abonnes_C1 primary key (abonneID)
 );
 

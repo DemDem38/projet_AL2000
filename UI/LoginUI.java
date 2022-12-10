@@ -61,6 +61,11 @@ public class LoginUI extends JPanel {
                 c.setLogin(loginField.getText());
                 c.setPassword(String.valueOf(passwordField.getPassword()));
                 controller.commande(c);
+                if (model.isConnected()) {
+                    mainFrame.changeCard("homeUI");
+                }
+                loginField.setText("");
+                passwordField.setText("");
             }
         });
         loginButton.setFocusable(false);

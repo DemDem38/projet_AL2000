@@ -58,7 +58,7 @@ public class testConnexion {
                 statement.execute(commande);
             }
 
-
+            /*
             // Test film
             DAO<Film> filmDAO = new FilmDAO(connexion);
             System.out.println("TEST CREATE : \n");
@@ -212,7 +212,7 @@ public class testConnexion {
             System.out.println("TEST DELETE : \n");
             demandeAjoutDAO.delete(demandeAjout);
             System.out.println(demandeAjoutDAO.read(2)==null?"OK":"Suppression échouée");
-
+            */
         } catch (SQLException e) { 
             e.printStackTrace();
         }
