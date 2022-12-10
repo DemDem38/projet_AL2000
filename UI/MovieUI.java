@@ -2,6 +2,7 @@ package UI;
 
 import FC.AL2000;
 import FC.PATTERNS.Observateur;
+import FC.POJO.Film;
 import UI.customDialog.RentDialog;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
@@ -15,16 +16,24 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class MovieUI extends JPanel {
+public class MovieUI extends JPanel implements Observateur {
 
     AL2000 model;
     CollecteurEvenements controller;
+    JLabel actorsLabel;
+    JLabel categoryLabel;
+    JLabel titleLabel;
+    JLabel synopsisLabel;
+    JLabel realisatorLabel;
+    JLabel imgLabel;
+    JLabel availableLabel;
 
     MovieUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
         super(new BorderLayout());
 
         model = m;
+        model.ajouteObservateur(this);
         controller = c;
 
         // Top panel
@@ -38,18 +47,12 @@ public class MovieUI extends JPanel {
         JPanel titlePanel = new JPanel();
         centerPanel.add(titlePanel, BorderLayout.NORTH);
 
-        JLabel titleLabel = new JLabel("Top Gun");
+        titleLabel = new JLabel();
         titleLabel.setFont(new Font(titleLabel.getFont().getFontName(), Font.PLAIN, 25));
         titlePanel.add(titleLabel);
 
-        BufferedImage posterImg;
-        try {
-            posterImg = ImageIO.read(getClass().getResource("/res/Images/topgun.jpg"));
-            JLabel posterLabel = new JLabel(new ImageIcon(posterImg.getScaledInstance(350, 500, Image.SCALE_FAST)));
-            centerPanel.add(posterLabel, BorderLayout.WEST);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        imgLabel = new JLabel();
+        centerPanel.add(imgLabel, BorderLayout.WEST);
 
         // Info panel
         JPanel infoPanel = new JPanel();
@@ -59,42 +62,42 @@ public class MovieUI extends JPanel {
 
         infoPanel.add(Box.createGlue());
 
-        JLabel synopsisLabel = new JLabel();
+        synopsisLabel = new JLabel();
         synopsisLabel.setFont(new Font(synopsisLabel.getFont().getFontName(), Font.PLAIN, synopsisLabel.getFont().getSize()));
-        synopsisLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
+/*         synopsisLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
                 "<b>Synopsis :</b>" +
                 "<br>Pete Maverick Mitchell, un jeune prodige du pilotage peu apprécié par sa hiérarchie, rejoint la très réputée école de l'aéronavale américaine, Top Gun, pour perfectionner ses techniques de combat aérien. Tous les étudiants concourent pour le titre de meilleur pilote."
-        ));
+        )); */
         infoPanel.add(synopsisLabel);
 
-        JLabel categoryLabel = new JLabel();
+        categoryLabel = new JLabel();
         categoryLabel.setFont(new Font(categoryLabel.getFont().getFontName(), Font.PLAIN, categoryLabel.getFont().getSize()));
-        categoryLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Genre : </b>Action, Aventure, Adulte"));
+        //categoryLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Genre : </b>Action, Aventure, Adulte"));
         infoPanel.add(categoryLabel);
 
-        JLabel actorsLabel = new JLabel();
+        actorsLabel = new JLabel();
         actorsLabel.setFont(new Font(actorsLabel.getFont().getFontName(), Font.PLAIN, actorsLabel.getFont().getSize()));
-        actorsLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
+/*         actorsLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
                 "<br><b>Acteurs :</b>"+
                 "<br>Tom Cruise \"Pete Mitchell\""+
                 "<br>Val Kilmer \"Iceman\""+
                 "<br>Kelly McGillis \"Charlie\""+
-                "<br>Anthony Edwards \"Goose\""));
+                "<br>Anthony Edwards \"Goose\"")); */
         infoPanel.add(actorsLabel);
 
-        JLabel realisatorLabel = new JLabel();
+        realisatorLabel = new JLabel();
         realisatorLabel.setFont(new Font(realisatorLabel.getFont().getFontName(), Font.PLAIN, realisatorLabel.getFont().getSize()));
-        realisatorLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Réalisateur : </b>Tony Scott"));
+        //realisatorLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>","<br><b>Réalisateur : </b>Tony Scott"));
         infoPanel.add(realisatorLabel);
 
-        BufferedImage awardsImg;
+/*         BufferedImage awardsImg;
         try {
             awardsImg = ImageIO.read(getClass().getResource("/res/Images/awards.png"));
             JLabel awardsLabel = new JLabel(new ImageIcon(awardsImg.getScaledInstance(450, 230, Image.SCALE_FAST)));
             infoPanel.add(awardsLabel);
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        } */
 
         infoPanel.add(Box.createGlue());
 
@@ -106,7 +109,7 @@ public class MovieUI extends JPanel {
         rightPanel.add(Box.createGlue());
 
         // TODO savoir si le film est disponible en BluRay
-        JLabel availableLabel = new JLabel("Blu-Ray disponible dans cette borne : NON");
+        availableLabel = new JLabel("Blu-Ray disponible dans cette borne : NON");
         availableLabel.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(availableLabel);
 
@@ -142,5 +145,31 @@ public class MovieUI extends JPanel {
         // Bot panel
         BotPanel botPanel = new BotPanel(mainFrame, "movieUI");
         add(botPanel, BorderLayout.SOUTH);
+    }
+
+    @Override
+    public void metAJour() {
+        if(model.getLastUpdate().equals("currentFilm")){
+            Film film = model.getCurrentFilm();
+            if(film!=null){
+                BufferedImage posterImg;
+                try {
+                    posterImg = ImageIO.read(getClass().getResource("/res/Images/"+film.getNom().replace('é','e').toLowerCase().replace(" ","").replace(":","")+".jpg"));
+                    imgLabel.setIcon(new ImageIcon(posterImg.getScaledInstance(320, 480, Image.SCALE_FAST)));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                synopsisLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
+                "<b>Synopsis :</b><br>" +film.getSynopsis()));
+        
+                categoryLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
+                "<b>Catégorie :</b><br>" +film.getCategorie()));
+
+                titleLabel.setText(film.getNom());
+                
+                realisatorLabel.setText(String.format("<html><body style=\"text-align: justify;  text-justify: inter-word;\">%s</body></html>",
+                "<b>Réalisateur :</b><br>" +film.getRealisateur()));
+            }
+        }
     }
 }

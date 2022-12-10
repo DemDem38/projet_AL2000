@@ -1,29 +1,47 @@
 package FC.POJO;
-import java.sql.Date;
 
 public class Location {
-    protected Date dateDebut,dateFin;
-    protected int supportID, abonneID;
+    protected String dateDebut,dateFin;
+    protected int supportID, abonneID, locationID;
     Etat etat;
+
+    public Location(int locationID, int supportID, String dd, String df, int abonneID, String etat) {
+        this.locationID = locationID;
+        this.supportID = supportID;
+        dateDebut = dd;
+        dateFin = df;
+        this.abonneID = abonneID;
+        switch(etat) {
+            case "enCours":
+                this.etat = Etat.enCours;
+            break;
+            case "Inspection":
+                this.etat = Etat.Inspection;
+            break;
+            case "Termine":
+                this.etat = Etat.Termine;
+            break;
+        }
+    }
 
     public Location(int supportID, int abonneID) {
         this.supportID = supportID;
         this.abonneID = abonneID;
     }
 
-    public Date getDateDebut() {
+    public String getDateDebut() {
         return dateDebut;
     }
 
-    public void setDateDebut(Date dateDebut) {
+    public void setDateDebut(String dateDebut) {
         this.dateDebut = dateDebut;
     }
 
-    public Date getDateFin() {
+    public String getDateFin() {
         return dateFin;
     }
 
-    public void setDateFin(Date dateFin) {
+    public void setDateFin(String dateFin) {
         this.dateFin = dateFin;
     }
 
@@ -49,5 +67,28 @@ public class Location {
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }  
+    
+    public int getLocationID() {
+        return locationID;
+    }
+
+    public void setLocationID(int locationID) {
+        this.locationID = locationID;
+    }
+
+    public String toSQL() {
+        return supportID + ",'" + dateDebut + "','" + dateFin + "'," + abonneID + ",'" + etat + "'";
+    }
+
+    @Override
+    public String toString() {
+        return "locationID = " + locationID + 
+        ", \nsupportID = " + supportID 
+        + ", \ndateDebut = " + dateDebut 
+        + ", \ndateFin = " + dateFin 
+        + ", \nabonneID = " + abonneID
+        + ", \netat = " + etat
+        + "\n\n";
     }
 }

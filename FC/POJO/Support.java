@@ -1,23 +1,23 @@
 package FC.POJO;
 public abstract class Support {
-    protected int ID;
-    protected String nomFilm;
+    protected int supportID;
+    protected int filmID;
     @Override
     public String toString() {
-        return "ID = " + ID + ", nomFilm = " + nomFilm + "\n\n";
+        return "ID = " + supportID + ", filmID = " + filmID + "\n\n";
     }
-    public int getID() {
-        return ID;
+    public int getFilmID() {
+        return filmID;
     }
-    public void setID(int iD) {
-        ID = iD;
+    public void setFilmID(int filmID) {
+        this.filmID = filmID;
     }
-    public String getNomFilm() {
-        return nomFilm;
+    public abstract String toSQL();
+
+    public int getSupportID() {
+        return supportID;
     }
-    public void setNomFilm(String nomFilm) {
-        this.nomFilm = nomFilm;
+    public void setSupportID(int supportID) {
+        this.supportID = supportID;
     }
-    
-    
 }

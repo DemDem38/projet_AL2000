@@ -3,7 +3,7 @@ package UI;
 public class Commande {
     private final String commande;
     private String login;
-    private String password;
+    private int password;
     private String support;
     private String nom;
     private String prenom;
@@ -25,12 +25,12 @@ public class Commande {
         this.login = login;
     }
 
-    public String getPassword() {
+    public int getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password.hashCode();
     }
 
     public String getSupport() {

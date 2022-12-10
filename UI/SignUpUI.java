@@ -160,7 +160,7 @@ public class SignUpUI extends JPanel {
                 c.setPrenom(prenomField.getText());
                 c.setLogin(emailField.getText());
                 c.setAdresse(adressField.getText());
-                c.setPassword(pwdConfLabel.getText());
+                c.setPassword(new String(pwdConfField.getPassword()));
                 controller.commande(c);
                 mainFrame.changeCard("homeUI");
             }

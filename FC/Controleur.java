@@ -14,8 +14,7 @@ public class Controleur implements CollecteurEvenements {
         System.out.println(c.getCommande());
         switch(c.getCommande()){
             case "connexion":
-                System.out.println(c.getLogin());
-                System.out.println(c.getPassword());
+                machine.connexion(c.getLogin(), c.getPassword());
                 break;
             case "louer":
                 System.out.println(c.getSupport());
@@ -26,12 +25,8 @@ public class Controleur implements CollecteurEvenements {
                 break;
             case "BluRayDefectueux":
                 break;
-            case "Abonnement":
-                System.out.println(c.getNom());
-                System.out.println(c.getPrenom());
-                System.out.println(c.getLogin());
-                System.out.println(c.getPassword());
-                System.out.println(c.getAdresse());
+            case "abonnement":
+                machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), "0674552336");
                 break;
             default:
                 return false;
