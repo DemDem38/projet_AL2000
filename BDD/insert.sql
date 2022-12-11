@@ -42,7 +42,7 @@ insert into supports(filmID, typeSup, dateExpiration) values(13, 'QRCode', '2022
 insert into supports(filmID, typeSup, dateExpiration) values(14, 'QRCode', '2022-08-11 04:15:29');
 insert into supports(filmID, typeSup, dateExpiration) values(15, 'QRCode', '2022-08-11 04:15:29');
 
--- INSERT 10 ABONNES
+-- INSERT 11 ABONNES
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Bialiatski', 'Alès', 'ales@etu.univ-grenoble-alpes.fr', '39 RTE DE TURIN', '0435876371', null, 100, 417945231);
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Ressa', 'Maria', 'mariaredoubless@gmail.com', '13 PLACE DU 25 AOUT', '0216325913', null, 100, 979270029);
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Ahmed', 'Abiy', 'abiybi@gmail.com', '32 Rue DE GAULLE', '0548233950', null, 100, 890913175);
@@ -53,8 +53,9 @@ insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde,
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Satyarthi', 'Kailash', 'kailash.pro@gmail.com', '32 AV DE PAVIOT', '0139715833', null, 100, 789680010);
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Johnson', 'Ellen', 'ellenfree@free.fr', '200 RUE RENE VIELLE', '0442832552', null, 100, 109067127);
 insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Gbowee', 'Leymah', 'leymahGBOWEE@orange.fr', '22 LE BOURG', '0122604183', 'Comédie,Romance', 100, 915049999);
+insert into abonnes(nom, prenom, email, adresse, telephone, restrictions, solde, mdpHash) values('Admin', 'Admin', 'admin', '3 RUE VICTOR HUGO', '0405658134', 'null', 100, 92668751);
 
--- INSERT 15 LOCATIONS
+-- INSERT 18 LOCATIONS
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(1, '2022-08-11 04:15:29', '2022-08-14 18:25:24', 1, 'Inspection');
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(3, '2022-10-13 16:35:28', null, 1, 'enCours');
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(4, '2022-09-15 23:22:34', '2022-10-12 14:44:14', 1, 'Termine');
@@ -70,6 +71,9 @@ insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(12, 
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(14, '2022-08-12 4:45:23', '2022-08-12 16:45:23', 7, 'Termine');
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(13, '2022-10-12 21:22:23', '2022-10-13 9:22:23', null, 'Termine');
 insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(15, '2022-10-14 16:22:44', '2022-10-15 4:22:44', null, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(8, '2022-10-14 16:22:44', null, 11, 'Termine');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(5, '2022-10-14 16:22:44', null, 11, 'Inspection');
+insert into locations(supportID, dateDebut, dateFin, abonneID, etat) values(14, '2022-08-10 16:15:29', '2022-08-11 04:15:29', 11, 'enCours');
 
 -- INSERT 10 DEMANDESAJOUTS
 insert into demandesAjouts(abonneID, filmID) values(1, 13);

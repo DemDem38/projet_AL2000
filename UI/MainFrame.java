@@ -44,6 +44,12 @@ public class MainFrame extends JFrame implements Runnable {
         InsertBluRayUI insertBluRayUI = new InsertBluRayUI(this, controller);
         cardsPanel.add(insertBluRayUI, "insertBluRayUI");
 
+        ManageUI manageAccountUI = new ManageUI(this, model, controller);
+        cardsPanel.add(manageAccountUI, "manageUI");
+
+        ModifInfosUI modifInfosUI = new ModifInfosUI(this, model, controller, manageAccountUI);
+        cardsPanel.add(modifInfosUI, "modifInfosUI");
+
         changeCard("homeUI");
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
