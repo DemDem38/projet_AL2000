@@ -104,10 +104,6 @@ public class SignUpUI extends JPanel {
                 String prenom = prenomField.getText();
                 String email = emailField.getText();
                 String adresse = adressField.getText();
-                System.out.println(nom);
-                System.out.println(prenom);
-                System.out.println(email);
-                System.out.println(adresse);
                 if ( nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() ) {
                     JOptionPane.showMessageDialog(centerPanel, "Tout les champs doivent être remplis");
                 }else if ( !Arrays.equals(pwdField.getPassword(), pwdConfField.getPassword()) ) {
@@ -120,6 +116,12 @@ public class SignUpUI extends JPanel {
                     c.setAdresse(adressField.getText());
                     c.setPassword(new String(pwdConfField.getPassword()));
                     controller.commande(c);
+                    nomField.setText("");
+                    prenomField.setText("");
+                    emailField.setText("");
+                    adressField.setText("");
+                    pwdConfField.setText("");
+                    pwdField.setText("");
                     mainFrame.changeCard("homeUI");
                 }
             }
