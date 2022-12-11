@@ -38,8 +38,7 @@ create table locations(
     abonneID number(10),
     etat varchar(20),
     constraint locations_C1 primary key (locationID),
-    constraint locations_C3 foreign key (supportID) references supports (supportID),
-    constraint locations_C4 foreign key (abonneID) references abonnes (abonneID)
+    constraint locations_C3 foreign key (supportID) references supports (supportID)
 );
 
 create table demandesAjouts(

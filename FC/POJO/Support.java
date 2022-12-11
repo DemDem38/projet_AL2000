@@ -20,4 +20,6 @@ public abstract class Support {
     public void setSupportID(int supportID) {
         this.supportID = supportID;
     }
+    public abstract String getType(); 
+
 }

@@ -133,7 +133,7 @@ public class MovieUI extends JPanel implements Observateur {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO savoir si le film est disponible en bluRay
-                RentDialog dialog = new RentDialog(mainFrame, controller, true);
+                RentDialog dialog = new RentDialog(mainFrame, controller, model.bluRayAvailable());
             }
         });
         rentButton.setFocusable(false);

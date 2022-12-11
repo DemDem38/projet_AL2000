@@ -17,11 +17,13 @@ public class Controleur implements CollecteurEvenements {
                 machine.connexion(c.getLogin(), c.getPassword());
                 break;
             case "louer":
-                System.out.println(c.getSupport());
+                System.out.println(c.getSupport());   
+                machine.createLocation(c.getSupport());
                 break;
             case "demandeBluRay":
                 break;
             case "BluRayRendu":
+                machine.updateLocation(c.getLocation());
                 break;
             case "BluRayDefectueux":
                 break;

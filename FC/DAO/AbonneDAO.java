@@ -58,7 +58,7 @@ public class AbonneDAO extends DAO<Abonne> {
         boolean b = false;
         // TODO : vérifier format dateFin
         try {
-            b = this.connect.createStatement().execute("update abonnes set nom = '" + abonne.getNom() +"', prenom = '" + abonne.getPrenom() + "', email = '" + abonne.getEmail() + "', adresse = '" + abonne.getAdresse() + "', telephone = '" + abonne.getTel() + "', restrictions = '" + String.join(",", abonne.getRestrictions()) + "', solde = " + abonne.getSolde() + ", mdpHash = " + abonne.getMdp());
+            b = this.connect.createStatement().execute("update abonnes set nom = '" + abonne.getNom() +"', prenom = '" + abonne.getPrenom() + "', email = '" + abonne.getEmail() + "', adresse = '" + abonne.getAdresse() + "', telephone = '" + abonne.getTel() + "', restrictions = '" + String.join(",", abonne.getRestrictions()) + "', solde = " + abonne.getSolde() + ", mdpHash = " + abonne.getMdp() + " where AbonneID = " + abonne.getID());
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -95,7 +95,6 @@ public class AbonneDAO extends DAO<Abonne> {
 
     public Abonne getAbonne(String email, int mdp) {
         try {
-            System.out.println(email + mdp);
             ResultSet res = this.connect.createStatement().executeQuery("select * from abonnes where email = '" + email + "' and mdpHash = " + mdp);
             res.next();
             ArrayList<String> al = new ArrayList<>();

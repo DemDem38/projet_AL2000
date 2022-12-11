@@ -29,10 +29,14 @@ public class BotPanel extends JPanel {
                     case "insertBluRayUI":
                         mainFrame.changeCard("returnBluRayUI");
                         break;
+                    case "modifInfosUI":
+                        mainFrame.changeCard("manageUI");
+                        break;
                     case "signUpUI":
                     case "returnBluRayUI":
                     case "loginUI":
                     case "catalogUI":
+                    case "manageUI":
                     default:
                         mainFrame.changeCard("homeUI");
 

@@ -19,4 +19,8 @@ public class BluRay extends Support{
     public String toString() {
         return "BluRay : " + super.toString();
     }
+
+    public String getType(){
+        return "BluRay";
+    } 
 }

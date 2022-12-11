@@ -3,6 +3,7 @@ package FC.DAO;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import FC.POJO.BluRay;
@@ -25,6 +26,21 @@ public class SupportDAO extends DAO<Support>{
             e.printStackTrace();
         }
         return b;
+    }
+
+    public int createSupport(Support support) {
+        int key = 0;
+        try {
+            String generatedColumns[] = { "supportID" };
+            Statement s = this.connect.createStatement();
+            s.executeUpdate("insert into supports(filmID, typeSup, dateExpiration) values("+support.toSQL()+")", generatedColumns);
+            ResultSet res = s.getGeneratedKeys();
+            res.next();
+            key = (int) res.getInt(1);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return key;
     }
 
     @Override
@@ -94,6 +110,19 @@ public class SupportDAO extends DAO<Support>{
             e.printStackTrace();
         };
         return liste;
+    }
+
+    public Support getBluRayAvailable(int filmID){
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery(
+                "select * from supports s where filmID = " + filmID + " and typeSup = 'BluRay'"+
+                "and s.supportID not in (select l.supportID from locations l where l.supportID = s.supportID and (etat='enCours' or etat='Inspection'))"
+            );
+            res.next();
+            return new BluRay(res.getInt("supportID"), res.getInt("filmID"));
+        } catch (SQLException e) {
+            return null;
+        }
     }
     
 }

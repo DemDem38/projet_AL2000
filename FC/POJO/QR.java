@@ -18,6 +18,10 @@ public class QR extends Support{
         // A la création, le QR code dure 12 heures
     }
 
+    public String getDateExpiration(){
+        return dateExpiration;
+    }
+
     @Override
     public String toSQL() {
         return filmID + ", 'QRCode','" + dateExpiration + "'";
@@ -27,5 +31,9 @@ public class QR extends Support{
     public String toString() {
         return "QRCode : " + "dateExpiration : "+ dateExpiration + super.toString();
     }
-    
+
+    public String getType(){
+        return "QRCode";
+    } 
+
 }
