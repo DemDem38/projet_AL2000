@@ -110,5 +110,22 @@ public class LocationDAO extends DAO<Location> {
         };
         return liste;
     }
+
+    public Location readFromNomDate(String nomFilm, String dateDebut) {
+        try {
+            ResultSet res = this.connect.createStatement().executeQuery("select * from locations join supports using(supportID) join films using(filmID) where nomFilm = '" + nomFilm + "' and dateDebut = '" + dateDebut + "'");
+            res.next();
+            return new Location(
+                res.getInt("locationID"), 
+                res.getInt("supportID"), 
+                res.getString("dateDebut"), 
+                res.getString("dateFin"), 
+                res.getInt("abonneID"), 
+                res.getString("etat"));
+        } catch (SQLException e) {
+            System.out.println("La location n'est plus dans la BDD");
+        };
+        return null;
+    }
     
 }

@@ -284,6 +284,10 @@ public class ManageUI extends JPanel implements Observateur {
                 abonne = model.getAbonneConnecte();
                 miseAJourUI(abonne);
                 break;
+            case "updateLocation":
+                abonne = model.getAbonneConnecte();
+                miseAJourUI(abonne);
+                break;
             default:
                 break;
         }

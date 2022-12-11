@@ -23,6 +23,7 @@ public class Controleur implements CollecteurEvenements {
             case "demandeBluRay":
                 break;
             case "BluRayRendu":
+                machine.updateLocation(c.getLocation());
                 break;
             case "BluRayDefectueux":
                 break;

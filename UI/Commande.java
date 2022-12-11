@@ -1,5 +1,7 @@
 package UI;
 
+import FC.POJO.Location;
+
 public class Commande {
     private final String commande;
     private String login;
@@ -8,6 +10,15 @@ public class Commande {
     private String nom;
     private String prenom;
     private String adresse;
+    private Location location;
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     public Commande(String commande){
         this.commande = commande;

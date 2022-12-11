@@ -1,6 +1,9 @@
 package FC;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import FC.DAO.AbonneDAO;
@@ -31,6 +34,8 @@ public class AL2000 extends Observable {
     Abonne abonneConnecte;
     ArrayList<Film> nameFilmsLocate;
     ArrayList<String> etatFilmsLocate;
+    ArrayList<String> dateFilmsLocate;
+    SimpleDateFormat sdf;
 
     public AL2000() {
         connexion = DBConnexion.instance();
@@ -41,6 +46,7 @@ public class AL2000 extends Observable {
         catalogue = new ArrayList<>();
         categories = new ArrayList<>();
         abonneConnecte = null;
+        sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     }
 
     public void connexion(String email, int mdp) {
@@ -111,6 +117,9 @@ public class AL2000 extends Observable {
             Location location = new Location(bluRayAvailable.getSupportID(), isConnected() ? abonneConnecte.getID():-1);
             locationDAO.create(location);
         }
+        abonneConnecte.setSolde(abonneConnecte.getSolde() - 5);
+        updateAbonne(abonneConnecte);
+        miseAJour();
     }
 
     public String getLastUpdate(){
@@ -128,6 +137,7 @@ public class AL2000 extends Observable {
         Film film;
         nameFilmsLocate = new ArrayList<>();
         etatFilmsLocate = new ArrayList<>();
+        dateFilmsLocate = new ArrayList<>();
         ArrayList<Location> loc = locationDAO.readListeFromAbonne(id);
         for (Location l : loc) {
             etatLocation = l.getEtat();
@@ -147,6 +157,7 @@ public class AL2000 extends Observable {
             filmID = support.getFilmID();
             film = filmDAO.read(filmID);
             nameFilmsLocate.add(film);
+            dateFilmsLocate.add(l.getDateDebut());
         }
     }
 
@@ -156,6 +167,9 @@ public class AL2000 extends Observable {
 
     public ArrayList<String> getEtatFilmsLocate() {
         return etatFilmsLocate;
+    }
+    public ArrayList<String> getDateFilmsLocate() {
+        return dateFilmsLocate;
     }
 
     public void deleteAbonne(Abonne abonne) {
@@ -167,6 +181,29 @@ public class AL2000 extends Observable {
         abonneDAO.update(abonne);
         abonneConnecte = abonne;
         lastUpdate = "updateAbonne";
+        miseAJour();
+    }
+
+    public Location getLocation(String nomFilm, String dateDebut) {
+        return locationDAO.readFromNomDate(nomFilm, dateDebut);
+    }
+
+    public void updateLocation(Location location) {
+        location.setDateFin(sdf.format(new Date(System.currentTimeMillis())));
+        location.setEtat(Etat.Termine);
+
+        // TODO : Si solde < 0 rip
+        long difference_In_Time = 0;
+        try {
+            difference_In_Time = sdf.parse(location.getDateFin()).getTime() - sdf.parse(location.getDateDebut()).getTime();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long difference_In_Days = (difference_In_Time / (1000 * 60 * 60 * 24)) % 365;
+        abonneConnecte.setSolde((int) (abonneConnecte.getSolde() - 4 * difference_In_Days));
+        updateAbonne(abonneConnecte);
+        locationDAO.update(location);
+        lastUpdate = "updateLocation";
         miseAJour();
     }
 }
