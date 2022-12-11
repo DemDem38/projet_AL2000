@@ -55,7 +55,7 @@ public class ManageUI extends JPanel implements Observateur {
 
         centerPanel.add(Box.createGlue());
 
-        soldeLabel = new JLabel("Solde compte : ");
+        soldeLabel = new JLabel("Solde :");
         soldeLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(soldeLabel);
 
@@ -209,15 +209,24 @@ public class ManageUI extends JPanel implements Observateur {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                int retour = JOptionPane.showConfirmDialog(
-                   ourPanel,
-                    "Êtes-vous sûr de vouloir supprimer votre compte ?",
-                    "Suppression du compte",
-                    JOptionPane.OK_CANCEL_OPTION);
+                String retour = JOptionPane.showInputDialog(
+                    ourPanel,
+                    "Entrez votre mot de passe pour fermer votre compte",
+                    "Fermeture du compte",
+                    JOptionPane.PLAIN_MESSAGE);
 
-                if (retour == 0) {
-                    model.deleteAbonne(abonne);
-                    mainFrame.changeCard("homeUI");
+                if (retour != null) {
+                    if (retour.hashCode() == abonne.getMdp()) {
+                        model.deleteAbonne(abonne);
+                        mainFrame.changeCard("homeUI");
+                    } else {
+                        JOptionPane.showMessageDialog(
+                            ourPanel,
+                            "L'entrée est différent de votre mot de passe",
+                            "Echec fermeture du compte",
+                            JOptionPane.WARNING_MESSAGE
+                        );
+                    }
                 }
             }
 
