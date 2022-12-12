@@ -35,6 +35,7 @@ public class AL2000 extends Observable {
     ArrayList<Film> nameFilmsLocate;
     ArrayList<String> etatFilmsLocate;
     ArrayList<String> dateFilmsLocate;
+    ArrayList<String> typeSupportFilmsLocate;
     SimpleDateFormat sdf;
 
     public AL2000() {
@@ -138,6 +139,7 @@ public class AL2000 extends Observable {
         nameFilmsLocate = new ArrayList<>();
         etatFilmsLocate = new ArrayList<>();
         dateFilmsLocate = new ArrayList<>();
+        typeSupportFilmsLocate = new ArrayList<>();
         ArrayList<Location> loc = locationDAO.readListeFromAbonne(id);
         for (Location l : loc) {
             etatLocation = l.getEtat();
@@ -158,6 +160,7 @@ public class AL2000 extends Observable {
             film = filmDAO.read(filmID);
             nameFilmsLocate.add(film);
             dateFilmsLocate.add(l.getDateDebut());
+            typeSupportFilmsLocate.add(support.getType());
         }
     }
 
@@ -170,6 +173,10 @@ public class AL2000 extends Observable {
     }
     public ArrayList<String> getDateFilmsLocate() {
         return dateFilmsLocate;
+    }
+
+    public ArrayList<String> getTypeSupportFilmsLocate() {
+        return typeSupportFilmsLocate;
     }
 
     public void deleteAbonne(Abonne abonne) {
@@ -188,11 +195,10 @@ public class AL2000 extends Observable {
         return locationDAO.readFromNomDate(nomFilm, dateDebut);
     }
 
-    public void updateLocation(Location location) {
+    public void updateLocation(Location location,Etat etat) {
         location.setDateFin(sdf.format(new Date(System.currentTimeMillis())));
-        location.setEtat(Etat.Termine);
+        location.setEtat(etat);
 
-        // TODO : Si solde < 0 rip
         long difference_In_Time = 0;
         try {
             difference_In_Time = sdf.parse(location.getDateFin()).getTime() - sdf.parse(location.getDateDebut()).getTime();

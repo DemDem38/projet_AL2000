@@ -44,8 +44,7 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
         defectButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO recupérer les locations en cours du client
-                Object[] possibilities = {"Topgun", "Harry Potter", "Star Wars"};
+                Object[] possibilities =  possibilities() ;
                 String s = (String) JOptionPane.showInputDialog(
                         mainFrame,
                         "Choisissez le film défectueux : ",
@@ -55,8 +54,11 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
                         possibilities,
                         null);
                 if(s!=null){
-                    //TODO : DVD qui s'apprète à être rendu
+                    String [] resultat = s.split(" loué le ");
+                    Location l = model.getLocation(resultat[0], resultat[1]);
                     Commande c = new Commande("BluRayDefectueux");
+                    JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment de la location, Vous serez rendourser une fois le Blu-Ray verifier", "Paiment", JOptionPane.OK_CANCEL_OPTION);
+                    c.setLocation(l);
                     controller.commande(c);
                     mainFrame.changeCard("insertBluRayUI");
                 }
@@ -87,6 +89,7 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
                         Location l = model.getLocation(resultat[0], resultat[1]);
                         Commande c = new Commande("BluRayRendu");
                         c.setLocation(l);
+                        JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment de la location", "Paiment", JOptionPane.OK_CANCEL_OPTION);
                         controller.commande(c);
                         mainFrame.changeCard("insertBluRayUI");
                     }
@@ -112,7 +115,7 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
         if(model.isConnected()) {  // Si abonné connecté, on affiche tous les films
             for (int i = 0; i < model.getEtatFilmsLocate().size(); i++) {
                 String ligne = new String();
-                if (model.getEtatFilmsLocate().get(i) == "EN COURS") {
+                if (model.getEtatFilmsLocate().get(i) == "EN COURS" && model.getTypeSupportFilmsLocate().get(i) == "BluRay") {
                     ligne = model.getNameFilmsLocate().get(i).getNom();
                     ligne += " loué le ";
                     ligne += model.getDateFilmsLocate().get(i);

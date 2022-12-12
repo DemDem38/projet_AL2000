@@ -160,8 +160,7 @@ public class SignUpUI extends JPanel {
                     JOptionPane.showMessageDialog(centerPanel, "Le soldes minimum est de 15 euros", "Solde insuffisant",
                             JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment",
-                            "Paiment", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment", "Paiment", JOptionPane.OK_CANCEL_OPTION);
                     Commande c = new Commande("abonnement");
                     c.setNom(nomField.getText());
                     c.setPrenom(prenomField.getText());

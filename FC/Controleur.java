@@ -1,5 +1,6 @@
 package FC;
 
+import FC.POJO.Etat;
 import UI.CollecteurEvenements;
 import UI.Commande;
 
@@ -23,9 +24,10 @@ public class Controleur implements CollecteurEvenements {
             case "demandeBluRay":
                 break;
             case "BluRayRendu":
-                machine.updateLocation(c.getLocation());
+                machine.updateLocation(c.getLocation(),Etat.Termine);
                 break;
             case "BluRayDefectueux":
+                machine.updateLocation(c.getLocation(),Etat.Inspection);
                 break;
             case "abonnement":
                 machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), c.getTelephone(),c.getSolde());
