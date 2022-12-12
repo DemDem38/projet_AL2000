@@ -30,6 +30,9 @@ public class Controleur implements CollecteurEvenements {
             case "abonnement":
                 machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), c.getTelephone(),c.getSolde());
                 break;
+            case "updateCatalogue":
+                machine.updateCatalogue();
+                break;
             default:
                 return false;
         }
