@@ -53,7 +53,6 @@ public class LocationDAO extends DAO<Location> {
     @Override
     public boolean update(Location location) {
         boolean b = false;
-        // TODO : vérifier format dateFin
         try {
             b = this.connect.createStatement().execute("update locations set dateFin = '" + location.getDateFin() +"', etat = '" + location.getEtat() + "' where locationID = " + location.getLocationID());
         } catch (SQLException e) {

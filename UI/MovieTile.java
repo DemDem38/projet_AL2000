@@ -30,7 +30,6 @@ public class MovieTile extends JLabel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                // TODO afficher le bon film avec supportID
                 model.setCurrentFilm(film);
                 mainFrame.changeCard("movieUI");
             }

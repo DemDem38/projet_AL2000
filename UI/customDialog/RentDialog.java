@@ -33,7 +33,6 @@ public class RentDialog extends JDialog {
                 public void actionPerformed(ActionEvent e) {
                     Commande c = new Commande("louer");
                     c.setSupport("BluRay");
-                    // TODO qu'est ce qu'on a besoin pour créer location
                     controller.commande(c);
                     mainFrame.changeCard("homeUI");
                     dispose();
@@ -49,7 +48,6 @@ public class RentDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 Commande c = new Commande("louer");
                 c.setSupport("QR");
-                // TODO qu'est ce qu'on a besoin pour créer location
                 controller.commande(c);
                 mainFrame.changeCard("homeUI");
                 dispose();

@@ -76,10 +76,10 @@ public class TopPanel extends JPanel implements Observateur {
     @Override
     public void metAJour() {
         if(model.isConnected()){
-            // TODO récupérer solde
-            soldeLabel.setText("15€");
+            soldeLabel.setText("Solde : " + Integer.toString(model.getAbonneConnecte().getSolde())+ "€");
             loginButton.setText("Se déconnecter");
             manageButton.setText("Gérer mon compte");
+            soldeLabel.setVisible(true);
         }else{
             soldeLabel.setVisible(false);
             loginButton.setText("Se connecter");

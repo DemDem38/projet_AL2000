@@ -56,7 +56,6 @@ public class AbonneDAO extends DAO<Abonne> {
     @Override
     public boolean update(Abonne abonne) {
         boolean b = false;
-        // TODO : vérifier format dateFin
         try {
             b = this.connect.createStatement().execute("update abonnes set nom = '" + abonne.getNom() +"', prenom = '" + abonne.getPrenom() + "', email = '" + abonne.getEmail() + "', adresse = '" + abonne.getAdresse() + "', telephone = '" + abonne.getTel() + "', restrictions = '" + String.join(",", abonne.getRestrictions()) + "', solde = " + abonne.getSolde() + ", mdpHash = " + abonne.getMdp() + " where AbonneID = " + abonne.getID());
         } catch (SQLException e) {

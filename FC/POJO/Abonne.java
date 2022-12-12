@@ -61,7 +61,6 @@ public class Abonne {
          * Si un compte abonnée a une liste de restriction non vide alors
          * il est considérer comme un compte enfant, il ne peux donc
          * pas crée lui même un compte enfant 
-         * TODO A VERFIER !!!
          */
      }
 

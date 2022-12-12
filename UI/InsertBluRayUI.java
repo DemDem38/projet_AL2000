@@ -31,7 +31,6 @@ public class InsertBluRayUI extends JPanel {
         insertButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO: le DVD est rendu
                 mainFrame.changeCard("homeUI");
             }
         });

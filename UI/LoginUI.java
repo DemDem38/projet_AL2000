@@ -56,7 +56,6 @@ public class LoginUI extends JPanel {
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO connexion
                 Commande c = new Commande("connexion");
                 c.setLogin(loginField.getText());
                 c.setPassword(String.valueOf(passwordField.getPassword()));
