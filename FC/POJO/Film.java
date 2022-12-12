@@ -1,7 +1,6 @@
 package FC.POJO;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Film {
     protected int filmID;
