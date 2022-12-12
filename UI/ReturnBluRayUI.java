@@ -57,7 +57,7 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
                     String [] resultat = s.split(" loué le ");
                     Location l = model.getLocation(resultat[0], resultat[1]);
                     Commande c = new Commande("BluRayDefectueux");
-                    JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment de la location, Vous serez rendourser une fois le Blu-Ray verifier", "Paiment", JOptionPane.OK_CANCEL_OPTION);
+                    JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiement de la location, Vous serez remboursé une fois le Blu-Ray verifié", "Paiement", JOptionPane.OK_CANCEL_OPTION);
                     c.setLocation(l);
                     controller.commande(c);
                     mainFrame.changeCard("insertBluRayUI");
@@ -89,7 +89,7 @@ public class ReturnBluRayUI extends JPanel implements Observateur {
                         Location l = model.getLocation(resultat[0], resultat[1]);
                         Commande c = new Commande("BluRayRendu");
                         c.setLocation(l);
-                        JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiment de la location", "Paiment", JOptionPane.OK_CANCEL_OPTION);
+                        JOptionPane.showConfirmDialog(centerPanel, "Suivez les instructions sur la machine pour le paiement de la location", "Paiement", JOptionPane.OK_CANCEL_OPTION);
                         controller.commande(c);
                         mainFrame.changeCard("insertBluRayUI");
                     }
