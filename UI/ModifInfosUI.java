@@ -4,6 +4,7 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -30,6 +31,7 @@ public class ModifInfosUI extends JPanel {
         model = m;
         controller = c;
         manageUI = a;
+        JPanel thisPanel = this;
 
         // Top panel
         TopPanel topPanel = new TopPanel(mainFrame, model, controller);
@@ -43,7 +45,7 @@ public class ModifInfosUI extends JPanel {
         centerPanel.add(Box.createGlue());
 
         JLabel infosLabel = new JLabel();
-        infosLabel.setText("Indiquez, dans les champs ci-dessous, vos nouvelles valeurs");
+        infosLabel.setText("Indiquez, dans les champs ci-dessous, vos nouvelles informations");
         infosLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(infosLabel);
 
@@ -60,7 +62,7 @@ public class ModifInfosUI extends JPanel {
         centerPanel.add(nameTextField);
         
         // Prenom
-        JLabel firstnameLabel = new JLabel("Prenom");
+        JLabel firstnameLabel = new JLabel("Prénom");
         firstnameLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(firstnameLabel);
 
@@ -90,7 +92,7 @@ public class ModifInfosUI extends JPanel {
         centerPanel.add(adresseTextField);
 
         // telephone
-        JLabel telephoneLabel = new JLabel("Telephone");
+        JLabel telephoneLabel = new JLabel("Téléphone");
         telephoneLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(telephoneLabel);
 
@@ -121,7 +123,7 @@ public class ModifInfosUI extends JPanel {
 
         centerPanel.add(Box.createGlue());
 
-        JButton sauvegardeButton = new JButton("sauvegarder");
+        JButton sauvegardeButton = new JButton("Sauvegarder");
         sauvegardeButton.setFocusable(false);
         sauvegardeButton.setAlignmentX(CENTER_ALIGNMENT);
         sauvegardeButton.addActionListener(new ActionListener() {
@@ -137,15 +139,35 @@ public class ModifInfosUI extends JPanel {
                 String confirmMdp = String.valueOf(confirmPasswordField.getPassword());
                 if (name.equals("") || firstname.equals("") || email.equals("") || adress.equals("") ||
                     telephone.equals("") || mdp.equals("") || confirmMdp.equals("")) {
-                    System.out.println("Erreur : un champ est vide");
+                    JOptionPane.showMessageDialog(
+                        thisPanel,
+                        "Tous les champs doivent être remplis",
+                        "Champs non remplis",
+                        JOptionPane.ERROR_MESSAGE
+                    );
                 } else if (!mdp.equals(confirmMdp)) {
-                    System.out.println("Erreur : le mot de passe est différent du mot de passe confirmé");
+                    JOptionPane.showMessageDialog(
+                        thisPanel,
+                        "Les deux mots de passe ne sont pas identiques",
+                        "Mot de passe invalide",
+                        JOptionPane.ERROR_MESSAGE
+                    );
                 } else {
-                    Abonne abonne = manageUI.getAbonne();
-                    Abonne abonneUpdate = new Abonne(abonne.getID(), name, firstname, email, adress, telephone, abonne.getRestrictions(),
-                                                        abonne.getSolde(), mdp.hashCode());
-                    model.updateAbonne(abonneUpdate);
-                    mainFrame.changeCard("manageUI");
+                    try {
+                        int test_tel = Integer.valueOf(telephone);
+                        Abonne abonne = manageUI.getAbonne();
+                        Abonne abonneUpdate = new Abonne(abonne.getID(), name, firstname, email, adress, telephone, abonne.getRestrictions(),
+                                                            abonne.getSolde(), mdp.hashCode());
+                        model.updateAbonne(abonneUpdate);
+                        mainFrame.changeCard("manageUI");
+                    } catch (NumberFormatException err) {
+                        JOptionPane.showMessageDialog(
+                            thisPanel,
+                            "Le numéro de téléphone doit contenir des entiers et aucun espace",
+                            "Problème téléphone",
+                            JOptionPane.ERROR_MESSAGE
+                        );
+                    }
                 }
                 nameTextField.setText("");
                 firstnameTextField.setText("");

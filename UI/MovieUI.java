@@ -92,13 +92,13 @@ public class MovieUI extends JPanel implements Observateur {
         availableLabel.setAlignmentX(CENTER_ALIGNMENT);
         rightPanel.add(availableLabel);
 
-        askButton = new JButton("Demander à ce que ce film soit disponible en Blu-Ray");
+        askButton = new JButton("Demander que ce film soit disponible en Blu-Ray");
         askButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Commande c = new Commande("demandeBluRay");
                 controller.commande(c);
-                askButton.setText("Votre demande à bien été prise en compte");
+                askButton.setText("Votre demande a bien été prise en compte");
                 askButton.setEnabled(false);
             }
         });
@@ -149,7 +149,7 @@ public class MovieUI extends JPanel implements Observateur {
             }
 
             askButton.setEnabled(true);
-            askButton.setText("Demander à ce que ce film soit disponible en Blu-Ray");
+            askButton.setText("Demander que ce film soit disponible en Blu-Ray");
     
             if(model.bluRayAvailable()){
                 availableLabel.setText("Blu-Ray disponible dans cette borne : OUI");

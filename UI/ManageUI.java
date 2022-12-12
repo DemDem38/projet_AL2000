@@ -70,7 +70,7 @@ public class ManageUI extends JPanel implements Observateur {
                 String retour = JOptionPane.showInputDialog(
                     ourPanel,
                     "Indiquez le montant",
-                    "",
+                    "Paiement",
                     JOptionPane.PLAIN_MESSAGE
                 );
                 if (retour != null) {
@@ -106,7 +106,7 @@ public class ManageUI extends JPanel implements Observateur {
 
         leftPanel.add(Box.createGlue());
 
-        JButton modifInfoButton = new JButton("Modifier infos");
+        JButton modifInfoButton = new JButton("Modifier informations");
         modifInfoButton.setFocusable(false);
         modifInfoButton.setAlignmentX(CENTER_ALIGNMENT);
         modifInfoButton.addActionListener(new ActionListener() {
@@ -146,7 +146,7 @@ public class ManageUI extends JPanel implements Observateur {
         prenomAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(prenomAccoutTextField);
 
-        JLabel mailLabel = new JLabel("Mail :");
+        JLabel mailLabel = new JLabel("Email :");
         mailLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(mailLabel);
 
@@ -166,7 +166,7 @@ public class ManageUI extends JPanel implements Observateur {
         adresseAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(adresseAccoutTextField);
 
-        JLabel telephoneLabel = new JLabel("Telephone :");
+        JLabel telephoneLabel = new JLabel("Téléphone :");
         telephoneLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(telephoneLabel);
 
@@ -222,8 +222,8 @@ public class ManageUI extends JPanel implements Observateur {
                     } else {
                         JOptionPane.showMessageDialog(
                             ourPanel,
-                            "L'entrée est différent de votre mot de passe",
-                            "Echec fermeture du compte",
+                            "Mot de passe invalide",
+                            "Échec fermeture du compte",
                             JOptionPane.WARNING_MESSAGE
                         );
                     }

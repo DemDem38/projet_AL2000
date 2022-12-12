@@ -23,7 +23,7 @@ public class InsertBluRayUI extends JPanel {
 
         centerPanel.add(Box.createGlue());
 
-        JLabel insertLabel = new JLabel("Inserez le Blu-Ray dans la borne");
+        JLabel insertLabel = new JLabel("Insérez le Blu-Ray dans la borne");
         insertLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(insertLabel);
 

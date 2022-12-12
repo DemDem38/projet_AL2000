@@ -83,7 +83,7 @@ public class TopPanel extends JPanel implements Observateur {
         }else{
             soldeLabel.setVisible(false);
             loginButton.setText("Se connecter");
-            manageButton.setText("M'inscrire");
+            manageButton.setText("S'abonner");
         }
     }
 }

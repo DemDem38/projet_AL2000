@@ -105,7 +105,7 @@ public class SignUpUI extends JPanel {
         adressField.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(adressField);
 
-        JLabel telephonLabel = new JLabel("Telephone");
+        JLabel telephonLabel = new JLabel("Téléphone");
         telephonLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(telephonLabel);
 
@@ -151,10 +151,10 @@ public class SignUpUI extends JPanel {
                 String adresse = adressField.getText();
                 String telephone = telephonField.getText();
                 if (nom.isEmpty() || prenom.isEmpty() || email.isEmpty() || adresse.isEmpty() || telephone.isEmpty()) {
-                    JOptionPane.showMessageDialog(centerPanel, "Tout les champs doivent être remplis", "Champ manquant",
+                    JOptionPane.showMessageDialog(centerPanel, "Tous les champs doivent être remplis", "Champ manquant",
                             JOptionPane.ERROR_MESSAGE);
                 } else if (!Arrays.equals(pwdField.getPassword(), pwdConfField.getPassword())) {
-                    JOptionPane.showMessageDialog(centerPanel, "Les deux mots de passe doivent être identique",
+                    JOptionPane.showMessageDialog(centerPanel, "Les deux mots de passe doivent être identiques",
                             "Mot de passe invalide", JOptionPane.ERROR_MESSAGE);
                 } else if (Integer.parseInt(soldeField.getText()) < 15) {
                     JOptionPane.showMessageDialog(centerPanel, "Le solde minimum est de 15 euros", "Solde insuffisant !",
@@ -179,7 +179,7 @@ public class SignUpUI extends JPanel {
                     pwdConfField.setText("");
                     pwdField.setText("");
                     JOptionPane.showMessageDialog(centerPanel,
-                            "Vous avez bien était inscrit vous recevrez votre carte dans un délai de 3 jours");
+                            "Vous avez bien été inscrit vous recevrez votre carte dans un délai de 3 jours");
                     mainFrame.changeCard("homeUI");
                 }
             }

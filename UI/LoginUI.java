@@ -34,7 +34,7 @@ public class LoginUI extends JPanel {
 
         centerPanel.add(Box.createGlue());
 
-        JLabel loginLabel = new JLabel("email");
+        JLabel loginLabel = new JLabel("Email");
         loginLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(loginLabel);
 
@@ -43,7 +43,7 @@ public class LoginUI extends JPanel {
         loginField.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(loginField);
 
-        JLabel passwordLabel = new JLabel("mot de passe");
+        JLabel passwordLabel = new JLabel("Mot de passe");
         passwordLabel.setAlignmentX(CENTER_ALIGNMENT);
         centerPanel.add(passwordLabel);
 

@@ -19,7 +19,7 @@ public class RentDialog extends JDialog {
 
         controller = c;
 
-        JLabel label = new JLabel("Choississez un support :");
+        JLabel label = new JLabel("Choisissez un support :");
         label.setHorizontalAlignment(SwingConstants.CENTER);
         add(label, BorderLayout.NORTH);
 
@@ -27,7 +27,7 @@ public class RentDialog extends JDialog {
         add(buttonPanel, BorderLayout.CENTER);
 
         if(bluRayAvailable) {
-            JButton bluRayButton = new JButton("BluRay");
+            JButton bluRayButton = new JButton("Blu-Ray");
             bluRayButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
