@@ -22,6 +22,7 @@ public class Controleur implements CollecteurEvenements {
                 machine.createLocation(c.getSupport());
                 break;
             case "demandeBluRay":
+                machine.demandeBluRay();
                 break;
             case "BluRayRendu":
                 machine.updateLocation(c.getLocation(),Etat.Termine);
@@ -31,6 +32,9 @@ public class Controleur implements CollecteurEvenements {
                 break;
             case "abonnement":
                 machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), c.getTelephone(),c.getSolde());
+                break;
+            case "updateCatalogue":
+                machine.updateCatalogue();
                 break;
             default:
                 return false;
