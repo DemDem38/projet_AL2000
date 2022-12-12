@@ -51,6 +51,13 @@ public class testConnexion {
                 statement.execute(commande);
             }
 
+            //TRIGGERS
+            str = fileToString("/BDD/triggers.sql");
+            sentences = str.split("/");
+            for (String commande : sentences) {
+                statement.execute(commande);
+            }
+
             //INSERT
             str = fileToString("/BDD/insert.sql");
             sentences = str.split(";");
