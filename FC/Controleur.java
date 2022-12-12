@@ -21,6 +21,7 @@ public class Controleur implements CollecteurEvenements {
                 machine.createLocation(c.getSupport());
                 break;
             case "demandeBluRay":
+                machine.demandeBluRay();
                 break;
             case "BluRayRendu":
                 machine.updateLocation(c.getLocation());

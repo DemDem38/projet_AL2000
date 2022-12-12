@@ -10,11 +10,13 @@ import FC.DAO.AbonneDAO;
 import FC.DAO.DAO;
 import FC.DAO.DAOFactory;
 import FC.DAO.DBConnexion;
+import FC.DAO.DemandeAjoutDAO;
 import FC.DAO.FilmDAO;
 import FC.DAO.LocationDAO;
 import FC.DAO.SupportDAO;
 import FC.PATTERNS.Observable;
 import FC.POJO.Abonne;
+import FC.POJO.DemandeAjout;
 import FC.POJO.Etat;
 import FC.POJO.Film;
 import FC.POJO.Location;
@@ -26,6 +28,7 @@ public class AL2000 extends Observable {
     FilmDAO filmDAO;
     LocationDAO locationDAO;
     SupportDAO supportDAO;
+    DemandeAjoutDAO demandeDAO;
     Connection connexion;
     ArrayList<Film> catalogue;
     ArrayList<String> categories;
@@ -43,6 +46,7 @@ public class AL2000 extends Observable {
         filmDAO = (FilmDAO) DAOFactory.getFilmDAO();
         locationDAO = (LocationDAO) DAOFactory.getLocationDAO();
         supportDAO = (SupportDAO) DAOFactory.getSupportDAO();
+        demandeDAO = (DemandeAjoutDAO) DAOFactory.getDemandeAjoutDAO();
         catalogue = new ArrayList<>();
         categories = new ArrayList<>();
         abonneConnecte = null;
@@ -206,4 +210,10 @@ public class AL2000 extends Observable {
         lastUpdate = "updateLocation";
         miseAJour();
     }
+
+    public void demandeBluRay(){
+        DemandeAjout demande = new DemandeAjout(abonneConnecte.getID(), currentFilm.getFilmID());
+        demandeDAO.create(demande);
+    }
+    
 }
