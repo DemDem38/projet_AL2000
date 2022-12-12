@@ -121,9 +121,10 @@ public class AL2000 extends Observable {
             Location location = new Location(bluRayAvailable.getSupportID(), isConnected() ? abonneConnecte.getID():-1);
             locationDAO.create(location);
         }
-        abonneConnecte.setSolde(abonneConnecte.getSolde() - 5);
-        updateAbonne(abonneConnecte);
-        miseAJour();
+        if(isConnected()){
+            abonneConnecte.setSolde(abonneConnecte.getSolde() - 5);
+            updateAbonne(abonneConnecte);
+        }
     }
 
     public String getLastUpdate(){

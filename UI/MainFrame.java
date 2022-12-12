@@ -3,6 +3,7 @@ package UI;
 import FC.AL2000;
 
 import javax.swing.*;
+import java.awt.Color;
 import java.awt.CardLayout;
 
 public class MainFrame extends JFrame implements Runnable {
@@ -19,6 +20,29 @@ public class MainFrame extends JFrame implements Runnable {
 
     @Override
     public void run() {
+
+        Color bgColor = new Color(58, 58, 58);
+        Color textColor = new Color(255, 255, 255);
+        Color buttonColor = new Color(128, 20, 213);
+
+        UIManager.put("Panel.background", bgColor);
+
+        UIManager.put("Button.background",buttonColor);
+        UIManager.put("Button.foreground",textColor);
+
+        UIManager.put("Label.foreground",textColor);
+
+        UIManager.put("ScrollPane.background",bgColor);
+        UIManager.put("ScrollPane.background",bgColor);
+
+        UIManager.put("CheckBox.background",bgColor);
+        UIManager.put("CheckBox.foreground",textColor);
+
+        UIManager.put("OptionPane.background",bgColor);
+        UIManager.put("OptionPane.messageForeground",textColor);
+
+        UIManager.put("ScrollBar.track",buttonColor);
+        UIManager.put("ScrollBar.thumb",buttonColor);
 
         cardsPanel = new JPanel(new CardLayout());
         add(cardsPanel);

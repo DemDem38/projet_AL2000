@@ -11,6 +11,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.plaf.basic.BasicScrollBarUI;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -69,6 +71,12 @@ public class CatalogUI extends JPanel implements Observateur {
 
         JScrollPane movieScrollPanel = new JScrollPane(moviePanel);
         movieScrollPanel.setBorder(BorderFactory.createEmptyBorder());
+        movieScrollPanel.getVerticalScrollBar().setUI(new BasicScrollBarUI() {
+            @Override
+            protected void configureScrollBarColors() {
+                this.thumbColor = new Color(128, 20, 213);
+            }
+        });
         centerPanel.add(movieScrollPanel, BorderLayout.CENTER);
 
         // Category panel
