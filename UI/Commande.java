@@ -10,6 +10,8 @@ public class Commande {
     private String nom;
     private String prenom;
     private String adresse;
+    private String telephone;
+    private int solde;
     private Location location;
 
     public Location getLocation() {
@@ -74,5 +76,21 @@ public class Commande {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public int getSolde() {
+        return solde;
+    }
+
+    public void setSolde(int solde) {
+        this.solde = solde;
     }
 }

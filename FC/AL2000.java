@@ -56,8 +56,8 @@ public class AL2000 extends Observable {
         miseAJour();
     }
 
-    public void abonner(String nom, String prenom, String login, int password, String adresse, String telephone) {
-        Abonne abonne = new Abonne(nom, prenom, login, adresse, telephone, new ArrayList<>(), 0, password);
+    public void abonner(String nom, String prenom, String login, int password, String adresse, String telephone, int solde) {
+        Abonne abonne = new Abonne(nom, prenom, login, adresse, telephone, new ArrayList<>(), solde, password);
         abonneDAO.create(abonne);
         connexion(login, password);
     }

@@ -28,7 +28,7 @@ public class Controleur implements CollecteurEvenements {
             case "BluRayDefectueux":
                 break;
             case "abonnement":
-                machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), "0674552336");
+                machine.abonner(c.getNom(), c.getPrenom(), c.getLogin(), c.getPassword(), c.getAdresse(), c.getTelephone(),c.getSolde());
                 break;
             default:
                 return false;
