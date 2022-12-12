@@ -27,7 +27,7 @@ public class ManageUI extends JPanel implements Observateur {
 
     AL2000 model;
     CollecteurEvenements controller;
-    private JTextField nomAccoutTextField, prenomAccoutTextField, mailAccoutTextField,
+    private JLabel nomAccoutTextField, prenomAccoutTextField, mailAccoutTextField,
     adresseAccoutTextField, telephoneAccounTextField, mdpAccoutTextField;
     private JLabel soldeLabel;
     private JPanel filmsPanel;
@@ -130,8 +130,7 @@ public class ManageUI extends JPanel implements Observateur {
         nomLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(nomLabel);
 
-        nomAccoutTextField = new JTextField();
-        nomAccoutTextField.setEditable(false);
+        nomAccoutTextField = new JLabel();
         nomAccoutTextField.setBorder(BorderFactory.createEmptyBorder());
         nomAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(nomAccoutTextField);
@@ -140,8 +139,7 @@ public class ManageUI extends JPanel implements Observateur {
         prenomLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(prenomLabel);
 
-        prenomAccoutTextField = new JTextField();
-        prenomAccoutTextField.setEditable(false);
+        prenomAccoutTextField = new JLabel();
         prenomAccoutTextField.setBorder(BorderFactory.createEmptyBorder());
         prenomAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(prenomAccoutTextField);
@@ -150,8 +148,7 @@ public class ManageUI extends JPanel implements Observateur {
         mailLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(mailLabel);
 
-        mailAccoutTextField = new JTextField();
-        mailAccoutTextField.setEditable(false);
+        mailAccoutTextField = new JLabel();
         mailAccoutTextField.setBorder(BorderFactory.createEmptyBorder());
         mailAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(mailAccoutTextField);
@@ -160,8 +157,7 @@ public class ManageUI extends JPanel implements Observateur {
         adresseLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(adresseLabel);
 
-        adresseAccoutTextField = new JTextField();
-        adresseAccoutTextField.setEditable(false);
+        adresseAccoutTextField = new JLabel();
         adresseAccoutTextField.setBorder(BorderFactory.createEmptyBorder());
         adresseAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(adresseAccoutTextField);
@@ -170,8 +166,7 @@ public class ManageUI extends JPanel implements Observateur {
         telephoneLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(telephoneLabel);
 
-        telephoneAccounTextField = new JTextField();
-        telephoneAccounTextField.setEditable(false);
+        telephoneAccounTextField = new JLabel();
         telephoneAccounTextField.setBorder(BorderFactory.createEmptyBorder());
         telephoneAccounTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(telephoneAccounTextField);
@@ -180,8 +175,7 @@ public class ManageUI extends JPanel implements Observateur {
         mdpLabel.setAlignmentX(LEFT_ALIGNMENT);
         infosPanel.add(mdpLabel);
 
-        mdpAccoutTextField = new JTextField();
-        mdpAccoutTextField.setEditable(false);
+        mdpAccoutTextField = new JLabel();
         mdpAccoutTextField.setBorder(BorderFactory.createEmptyBorder());
         mdpAccoutTextField.setAlignmentX(RIGHT_ALIGNMENT);
         infosPanel.add(mdpAccoutTextField);
