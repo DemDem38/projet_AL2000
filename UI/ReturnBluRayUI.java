@@ -3,7 +3,6 @@ package UI;
 import FC.AL2000;
 import FC.PATTERNS.Observateur;
 import FC.POJO.Abonne;
-import FC.POJO.Film;
 import FC.POJO.Location;
 import UI.customPanel.BotPanel;
 import UI.customPanel.TopPanel;
