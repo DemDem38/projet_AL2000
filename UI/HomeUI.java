@@ -1,6 +1,7 @@
 package UI;
 
 import FC.AL2000;
+import FC.PATTERNS.Observateur;
 import UI.customPanel.TopPanel;
 
 import javax.swing.Box;
@@ -12,10 +13,11 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class HomeUI extends JPanel {
+public class HomeUI extends JPanel implements Observateur {
 
     AL2000 model;
     CollecteurEvenements controller;
+    private JButton returnButton;
 
     HomeUI(MainFrame mainFrame, AL2000 m, CollecteurEvenements c){
 
@@ -23,6 +25,8 @@ public class HomeUI extends JPanel {
 
         model = m;
         controller = c;
+
+        model.ajouteObservateur(this);
 
         // Top panel
         TopPanel topPanel = new TopPanel(mainFrame, model, controller);
@@ -50,7 +54,7 @@ public class HomeUI extends JPanel {
 
         centerPanel.add(Box.createRigidArea(new Dimension(0, 10)));
 
-        JButton returnButton = new JButton("Retourner un film");
+        returnButton = new JButton("Retourner un film");
         returnButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,9 +63,20 @@ public class HomeUI extends JPanel {
         });
         returnButton.setFocusable(false);
         returnButton.setAlignmentX(CENTER_ALIGNMENT);
+        returnButton.setVisible(false);
         centerPanel.add(returnButton);
 
         centerPanel.add(Box.createGlue());
 
     }
+
+    @Override
+    public void metAJour() {
+        if (model.isConnected()) {
+            returnButton.setVisible(true);
+        } else {
+            returnButton.setVisible(false);
+        }
+    }
+
 }
